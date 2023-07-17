@@ -1,0 +1,44 @@
+.discont-container {
+    .discont-content {
+        .discount-header {}
+
+        .discount-title {
+            margin        : 15px 0;
+            font-size     : 25px;
+            font-weight   : 600;
+            text-align    : center;
+            color         : blue;
+            text-transform: uppercase;
+        }
+
+        .discount-body {
+            margin: 5px 10px;
+
+            .date-picker {
+                .react-datepicker-wrapper {
+                    width: 100%;
+                }
+            }
+        }
+
+        .table-manager {
+            margin: 5px 10px;
+        }
+
+        .discount-tail {
+            float : right;
+            margin: 5px 10px;
+
+            .btn-save {}
+
+            .btn-save-update {
+                border          : none;
+                outline         : none;
+                border-radius   : 3px;
+                background-color: orange;
+            }
+        }
+
+
+    }
+}

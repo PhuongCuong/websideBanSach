@@ -1,0 +1,30 @@
+.cart-tail-container {
+    box-shadow: 0px -4px 10px -4px rgba(0, 0, 0, 0.66);
+
+    .cart-tail-content {
+        width           : 100%;
+        height          : 60px;
+        background-color: #ffffff;
+        display         : flex;
+        align-items     : center;
+
+        .back-cart {
+            margin-left: 50px;
+            color      : black;
+
+            i {
+                font-size: 20px;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .text-back-cart {
+            margin     : 0 10px;
+            font-size  : 15px;
+            font-weight: 600;
+        }
+    }
+}

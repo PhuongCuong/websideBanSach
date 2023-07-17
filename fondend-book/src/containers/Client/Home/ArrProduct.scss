@@ -1,0 +1,66 @@
+.arr-product-container {
+    .arr-product-content {
+        display      : flex;
+        flex-wrap    : wrap;
+        align-content: flex-start;
+        gap          : 8px;
+
+        .product-info {
+            width           : 200px;
+            height          : 380px;
+            background-color: #ffffff;
+            border-radius   : 5px;
+
+
+            .product-image {
+                width              : 199px;
+                height             : 200px;
+                background-position: center;
+                background-repeat  : no-repeat;
+                background-size    : contain;
+                background-image   : url('../../../assets/images/Book/8934974158448.jpg');
+            }
+
+            .product-name-book {
+                margin     : 15px 10px;
+                font-weight: 500;
+                font-size  : 17px;
+                line-height: 16px;
+                color      : rgb(56, 56, 61);
+                word-break : break-word;
+            }
+
+            .product-gia {
+
+                .gia {
+                    margin     : 5px 10px;
+                    color      : rgb(255, 66, 78);
+                    text-align : left;
+                    font-size  : 16px;
+                    line-height: 24px;
+                    font-weight: 500;
+                }
+
+                .discount {
+                    color    : rgb(255, 66, 78);
+                    font-size: 13px;
+                }
+            }
+
+            .gia-ban-dau {
+                text-decoration: line-through;
+                font-size      : 14px;
+                line-height    : 24px;
+                font-weight    : 400;
+                margin         : 0 10px;
+
+            }
+
+            &:hover {
+                border-radius: 5px;
+                box-shadow   : rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+                cursor       : pointer;
+            }
+        }
+    }
+}

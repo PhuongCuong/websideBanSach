@@ -1,0 +1,231 @@
+.cart-bill-container {
+    background-color: #f8f9fa;
+
+    .cart-bill-content {
+
+
+        .cart-bill-header {
+            position: sticky;
+            top     : 0;
+            z-index : 100;
+        }
+
+        .cart-bill-body {
+            width          : 100%;
+            height         : 100%;
+            display        : flex;
+            justify-content: center;
+            flex-wrap      : wrap;
+            align-content  : flex-start;
+
+            .warning-login {
+                margin-top      : 30px;
+                height          : 46px;
+                width           : 70%;
+                background-color: #ffffff;
+                display         : flex;
+                display         : flex;
+                align-items     : center;
+
+                .left-warning {
+                    width           : 46px;
+                    height          : 100%;
+                    background-color: #f39801;
+                    display         : flex;
+                    justify-content : center;
+                    align-items     : center;
+
+                    .img-warning {
+                        width              : 30px;
+                        height             : 30px;
+                        background-image   : url('../../../assets/images/cart/ico_warning_white.svg');
+                        background-position: center;
+                        background-repeat  : no-repeat;
+                        background-size    : contain;
+                    }
+                }
+
+                .right-warning {
+                    margin     : 0 10px;
+                    color      : #f39801;
+                    font-size  : 14px;
+                    font-weight: 500;
+
+                    .Link-login {
+                        margin     : 0 5px;
+                        color      : #f39801;
+                        font-size  : 15px;
+                        font-weight: 600;
+                    }
+                }
+
+            }
+
+            .cart-bill-order {
+                margin          : 30px 0;
+                width           : 70%;
+                height          : 200px;
+                background-color: #ffffff;
+                border-radius   : 5px;
+                border          : 1px solid #eee;
+
+                .order-title {
+                    margin        : 10px 10px;
+                    text-transform: uppercase;
+                    font-size     : 17px;
+                    font-weight   : 550;
+                    border-bottom : 1px solid #ddd;
+                }
+
+                .order-form {
+                    margin: 10px 10px;
+                }
+            }
+
+            .cart-bill-info {
+                background-color: #ffffff;
+                border-radius   : 5px;
+                width           : 70%;
+                border          : 1px solid #eee;
+
+                .cart-bill-info-title {
+                    margin        : 10px 10px;
+                    text-transform: uppercase;
+                    font-size     : 17px;
+                    font-weight   : 550;
+                    border-bottom : 1px solid #ddd;
+                }
+
+                .product-incart {
+                    margin       : 15px 0;
+                    border-radius: 8px;
+                    width        : 100%;
+                    height       : 170px;
+                    display      : flex;
+                    align-items  : center;
+
+                    .img-product {
+                        margin             : 0 15px;
+                        width              : 135px;
+                        height             : 140px;
+                        background-repeat  : no-repeat;
+                        background-position: center;
+                        background-size    : contain;
+                    }
+
+                    .info-product {
+                        margin  : 0 15px;
+                        width   : 535px;
+                        height  : 140px;
+                        position: relative;
+
+                        .ten-sach {
+                            font-size         : 16px;
+                            color             : #333333;
+                            font-family       : 'Nunito Sans' !important;
+                            word-break        : break-word;
+                            white-space       : normal;
+                            overflow          : hidden;
+                            text-overflow     : ellipsis;
+                            display           : -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            max-height        : 6em;
+                            padding-top       : 0px;
+                            margin            : 0 10px;
+                        }
+
+                        .gia-sach {
+                            position   : absolute;
+                            bottom     : 20px;
+                            margin     : 0 10px;
+                            font-size  : 1.2em;
+                            line-height: 1.2em;
+                            color      : #333;
+                            font-weight: 650;
+                            font-family: sans-serif !important;
+
+                        }
+
+                        .gia-sach-discount {
+                            margin         : 0 100px;
+                            position       : absolute;
+                            bottom         : 23px;
+                            font-size      : 1em;
+                            line-height    : 1.2em;
+                            color          : #7A7E7F !important;
+                            text-decoration: line-through;
+                            font-size      : 0.95em;
+                            font-weight    : normal !important;
+                            font-family    : sans-serif !important;
+                        }
+                    }
+
+                    .desgin-input-number {
+                        margin     : 0 15px;
+                        font-size  : 1.2em;
+                        font-weight: 500;
+                    }
+
+                    .thanh-tien {
+                        margin     : 0 60px;
+                        color      : rgb(255, 57, 69);
+                        font-weight: bold;
+                        font-size  : 1.2em;
+                    }
+                }
+            }
+
+            .cart-bill-btn {
+                width           : 70%;
+                margin          : 30px 0;
+                height          : 130px;
+                background-color: #ffffff;
+                border-radius   : 5px;
+
+                .cart-bill-btn-title {
+                    margin        : 10px 10px;
+                    text-transform: uppercase;
+                    font-size     : 17px;
+                    font-weight   : 550;
+                    border-bottom : 1px solid #ddd;
+                }
+
+                .cart-bill-toltal {
+                    position: relative;
+                    height  : 80px;
+                    display : flex;
+
+                    .text-toltal {
+                        margin     : 10px 10px;
+                        font-size  : 15px;
+                        font-weight: 600;
+                    }
+
+                    .toltal-mount {
+                        margin     : 10px 20px;
+                        color      : rgb(255, 57, 69);
+                        font-weight: bold;
+                        font-size  : 1.2em;
+                    }
+
+                    .btn-xac-nhan {
+                        position        : absolute;
+                        right           : 10px;
+                        bottom          : 10px;
+                        height          : 50px;
+                        width           : 250px;
+                        border          : none;
+                        outline         : none;
+                        background-color: rgb(255, 57, 69);
+                        color           : white;
+                        border-radius   : 5px;
+                        font-size       : 17px;
+                        font-weight     : 600;
+                    }
+                }
+            }
+        }
+
+    }
+}

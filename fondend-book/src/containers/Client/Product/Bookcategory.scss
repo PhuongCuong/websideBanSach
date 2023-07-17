@@ -1,0 +1,232 @@
+.book-category-container {
+    border-radius   : 5px;
+    background-color: #ffffff;
+
+    .book-category-content {
+
+        .category-product {
+            border-bottom: 1px solid #ddd;
+
+            .category-product-title {
+                margin-left: 5px;
+                line-height: 20px;
+                display    : block;
+                color      : rgb(56, 56, 61);
+                font-size  : 15px;
+                padding    : 12px 0px;
+                font-weight: 550;
+            }
+
+            .category-product-product {
+                margin-left      : 5px;
+                font-size        : 12px;
+                font-weight      : 400;
+                color            : rgb(56, 56, 61);
+                padding          : 0px 0px 12px;
+                line-height      : 16px;
+                display          : flex;
+                -webkit-box-align: center;
+                align-items      : center;
+
+                &:hover {
+                    opacity: 0.8;
+                    cursor : pointer;
+                }
+
+                &.action {
+                    color      : rgb(11, 116, 229);
+                    font-weight: 550;
+                }
+            }
+        }
+
+        .category-mount {
+            border-bottom: 1px solid #ddd;
+
+            .category-mount-title {
+                margin-left: 5px;
+                line-height: 20px;
+                display    : block;
+                color      : rgb(56, 56, 61);
+                font-size  : 15px;
+                padding    : 12px 0px;
+                font-weight: 550;
+            }
+
+            .item {
+                margin-left  : 5px;
+                background   : rgb(238, 238, 238);
+                font-size    : 12px;
+                padding      : 4px 12px;
+                line-height  : 16px;
+                display      : inline-block;
+                position     : relative;
+                color        : rgb(56, 56, 61);
+                border-radius: 12px;
+                margin-bottom: 4px;
+
+                &.active {
+                    border: 1px solid rgb(11, 116, 229);
+                    color : rgb(11, 116, 229);
+
+                }
+
+                span {
+                    font-family: Inter, Helvetica, Arial, sans-serif;
+
+                }
+
+                &:hover {
+                    cursor : pointer;
+                    opacity: 0.8;
+                }
+            }
+
+            .text-khoang-gia {
+                margin-left   : 5px;
+                color         : rgb(128, 128, 137);
+                font-size     : 12px;
+                padding-bottom: 8px;
+                margin-top    : 4px;
+            }
+
+            .choose-khoang-gia {
+                margin: 0 5px;
+
+                display        : flex;
+                justify-content: center;
+                align-items    : center;
+
+                .gia-tu {
+                    text-align   : center;
+                    flex         : 1 1 0%;
+                    width        : 77px;
+                    height       : 30px;
+                    padding      : 0px 8px;
+                    background   : rgb(255, 255, 255);
+                    border-radius: 4px;
+                    border       : 1px solid rgb(184, 184, 184);
+                    outline      : 0px;
+                    font-size    : 13px;
+                }
+
+                span {
+                    width         : 7px;
+                    height        : 1px;
+                    font-size     : 0px;
+                    display       : inline-block;
+                    background    : rgb(154, 154, 154);
+                    margin        : 0px 4px;
+                    vertical-align: middle;
+                }
+
+                .gia-den {
+                    text-align   : center;
+                    flex         : 1 1 0%;
+                    width        : 77px;
+                    height       : 30px;
+                    padding      : 0px 8px;
+                    background   : rgb(255, 255, 255);
+                    border-radius: 4px;
+                    border       : 1px solid rgb(184, 184, 184);
+                    outline      : 0px;
+                    font-size    : 13px;
+                }
+            }
+
+            .ap-dung {
+                margin: 10px 5px;
+
+                // margin-bottom  : 10px;
+                display              : flex;
+                justify-content      : center;
+                align-items          : center;
+                background           : rgb(255, 255, 255);
+                border               : 1px solid rgb(11, 116, 229);
+                font-size            : 12px;
+                padding              : 5px 15px;
+                // width             : 100%;
+                // margin-top     : 8px;
+                border-radius        : 4px;
+
+                span {
+                    text-align: center;
+                    color     : rgb(11, 116, 229);
+
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+
+        }
+
+        .nha-cung-cap {
+            margin-left: 5px;
+            max-height : 250px;
+            overflow   : hidden;
+
+            .nha-cung-cap-title {
+                margin     : 0px;
+                line-height: 20px;
+                display    : block;
+                color      : rgb(56, 56, 61);
+                font-size  : 15px;
+                padding    : 12px 0px;
+                font-weight: 550;
+            }
+
+            .nha-cung-cap-item {
+                height     : 30px;
+                font-size  : 12px;
+                font-weight: 400;
+                color      : rgb(56, 56, 61);
+                line-height: 16px;
+                display    : flex;
+                align-items: center;
+                margin     : 10px 0;
+
+                input {
+                    min-height: 20px;
+                    min-width : 20px;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                span {
+                    margin     : 0 10px;
+                    font-size  : 14px;
+                    font-weight: 400;
+                    color      : rgb(56, 56, 61);
+                    line-height: 16px;
+                }
+            }
+
+            &.showmoreNCC {
+                max-height: none;
+            }
+
+        }
+
+        .show-more {
+            margin           : 10px 5px;
+            font-size        : 14px;
+            font-weight      : 500;
+            display          : flex;
+            -webkit-box-align: center;
+            align-items      : center;
+            line-height      : 16px;
+            color            : rgb(11, 116, 229);
+            height           : 30px;
+            cursor           : pointer;
+
+            i {
+                margin: 0 5px;
+            }
+        }
+    }
+}

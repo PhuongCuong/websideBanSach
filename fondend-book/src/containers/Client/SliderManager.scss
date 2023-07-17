@@ -1,0 +1,112 @@
+.slider-container {
+
+    .slider-content {
+
+
+        .slick-prev {
+            left               : 5px;
+            width              : 34px;
+            height             : 34px;
+            background-image   : url('../../../src/assets/images/slider/fa-angle-left_32_8_8e8c8c_none.png');
+            background-position: center;
+            background-repeat  : no-repeat;
+            background-size    : contain;
+            border-radius      : 19px;
+            border             : 1px solid #CCCCCC !important;
+            z-index            : 100;
+
+            &:hover {
+                cursor : pointer;
+                opacity: 0.7;
+            }
+        }
+
+        .slick-next {
+            right              : 5px;
+            width              : 34px;
+            height             : 34px;
+            background-image   : url('../../../src/assets/images/slider/fa-angle-right_32_8_8e8c8c_none.png');
+            background-position: center;
+            background-repeat  : no-repeat;
+            background-size    : contain;
+            border-radius      : 19px;
+            border             : 1px solid #CCCCCC !important;
+
+
+            &:hover {
+                cursor : pointer;
+                opacity: 0.7;
+            }
+
+        }
+
+        .book-slider-info {
+            position        : relative;
+            background-color: #ffffff;
+            box-shadow      : rgba(0, 0, 0, 0.05) 0px 5px 15px 0px;
+            width           : 220px !important;
+            height          : 280px;
+            margin-left     : 10px;
+            display         : flex !important;
+            flex-wrap       : wrap;
+            justify-content : center;
+            align-items     : center;
+
+
+
+            .slider-img {
+                width              : 70%;
+                height             : 70%;
+                background-image   : url('../../../src/assets/images/Book/8934974158448.jpg');
+                background-position: center;
+                background-repeat  : no-repeat;
+                background-size    : contain;
+            }
+
+            .silder-ten-sach {
+                line-height  : 1.3em;
+                min-height   : 3em;
+                max-height   : 3em;
+                font-weight  : 550;
+                margin-bottom: 4px;
+                width        : 100%;
+                margin       : 10px 0;
+                height       : 25%;
+                text-align   : center;
+                font-size    : 16px;
+
+
+
+            }
+
+            transition: box-shadow 0.5s ease;
+
+            &:hover {
+                border-radius: 5px;
+                box-shadow   : rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+                cursor       : pointer;
+            }
+
+            .book-info-discount {
+                position        : absolute;
+                right           : 0;
+                top             : 0;
+                height          : 50px;
+                width           : 50px;
+                display         : flex;
+                justify-content : center;
+                align-items     : center;
+                border-radius   : 40px;
+                background-color: orange;
+                font-size       : 17px;
+                color           : white;
+                font-weight     : 600;
+
+                i {
+                    font-size: 14px;
+                    color    : white;
+                }
+            }
+        }
+    }
+}

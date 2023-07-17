@@ -1,0 +1,155 @@
+.nhacungcap-container {
+    .nhacungcap-content {
+        .nhacungcap-title {
+            margin        : 15px 0;
+            font-size     : 25px;
+            font-weight   : 600;
+            text-align    : center;
+            color         : blue;
+            text-transform: uppercase;
+        }
+
+        .nhacungcap-info {
+            margin: 15px 5px
+        }
+
+        .table-nhacungcap {
+            margin    : 5px 5px;
+            max-height: 480px;
+            overflow-y: scroll;
+            width     : 99%;
+
+
+
+            #customers {
+                font-family    : Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width          : 100%;
+                border-radius  : 5px;
+
+                // .scrollbars-table {
+                //     width : 100% !important;
+                //     height: 500px !important;
+                // }
+
+                .sticky-column {
+                    position: -webkit-sticky;
+                    /* Safari */
+                    position: sticky;
+                    top     : 0
+                }
+
+                .image-book-manage {
+                    background-image   : url('../../../assets/images/Book/bia1_muonkiepnhansinh3-01.jpg');
+                    background-position: center;
+                    background-repeat  : no-repeat;
+                    background-size    : cover;
+                }
+
+                .btn-delete-book {
+                    margin          : 5px 5px;
+                    min-width       : 70px;
+                    min-height      : 30px;
+                    border          : none;
+                    outline         : none;
+                    border-radius   : 7px;
+                    background-color: orange;
+                }
+
+                .btn-edit-book {
+                    margin          : 5px 5px;
+                    min-width       : 70px;
+                    min-height      : 30px;
+                    border          : none;
+                    outline         : none;
+                    border-radius   : 7px;
+                    background-color: rgb(60, 209, 242);
+
+                }
+
+            }
+
+            #customers td,
+            #customers th {
+                border : 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top     : 12px;
+                padding-bottom  : 12px;
+                text-align      : left;
+                background-color: #04AA6D;
+                color           : white;
+            }
+        }
+
+        .btn-nhacungcap {
+            float    : right;
+            margin   : 15px 15px;
+            font-size: 20px;
+
+            .btn-save-ncc {
+                border          : none;
+                outline         : none;
+                margin          : 5px 5px;
+                min-width       : 150px;
+                min-height      : 40px;
+                border-radius   : 3px;
+                background-color: orange;
+                color           : #ddd;
+                text-transform  : uppercase;
+
+                i {
+                    font-size   : 20px;
+                    color       : rgb(215, 230, 87);
+                    margin-right: 5px;
+                }
+            }
+
+            .btn-add-ncc {
+                border          : none;
+                outline         : none;
+                margin          : 5px 5px;
+                min-width       : 150px;
+                min-height      : 40px;
+                border-radius   : 3px;
+                background-color: orange;
+                color           : #ddd;
+                text-transform  : uppercase;
+
+                i {
+                    font-size   : 20px;
+                    color       : rgb(215, 230, 87);
+                    margin-right: 5px;
+                }
+            }
+
+            .btn-clean-ncc {
+                border          : none;
+                outline         : none;
+                margin          : 5px 5px;
+                min-width       : 150px;
+                min-height      : 40px;
+                border-radius   : 3px;
+                background-color: rgb(13, 51, 112);
+                color           : #ddd;
+                text-transform  : uppercase;
+
+                i {
+                    font-size   : 20px;
+                    color       : rgb(215, 230, 87);
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}

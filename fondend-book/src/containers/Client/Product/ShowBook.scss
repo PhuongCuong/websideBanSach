@@ -1,0 +1,106 @@
+.show-book-container {
+    background-color: #f0f0f0;
+
+    .show-book-content {
+        height: 100%;
+
+        .show-book-header {
+            position: sticky;
+            top     : 0;
+            z-index : 200;
+        }
+
+        .show-book-body {
+            display        : flex;
+            justify-content: center;
+            flex-wrap      : wrap;
+            align-content  : flex-start;
+            height         : 100%;
+
+            .show-book-sort {
+                margin          : 10px 0;
+                height          : 60px;
+                width           : 80%;
+                background-color: #ffffff;
+                border-radius   : 5px;
+                display         : flex;
+                align-items     : center;
+
+                .show-book-text {
+                    margin     : 0 30px;
+                    font-size  : 15px;
+                    font-weight: 500;
+
+                }
+
+                .show-book-select {
+                    height : 25px;
+                    width  : 170px;
+                    border : 1px solid #ddd;
+                    outline: none;
+                }
+            }
+
+            .show-more-bookk {
+                background-color: #ffffff;
+                height          : 100%;
+                border-radius   : 5px;
+                width           : 80%;
+                display         : flex;
+                justify-content : center;
+            }
+
+            .show-more-page {
+                margin         : 10px 0;
+                width          : 80%;
+                display        : flex;
+                justify-content: center;
+                align-items    : center;
+
+                .pagination-wrapper {
+                    display    : flex;
+                    align-items: center;
+                }
+
+                .previous-page {
+                    margin-right: 10px;
+                }
+
+                .next-page {
+                    margin-left: 10px;
+                }
+
+                .pagination {
+                    display        : flex;
+                    justify-content: center;
+                    align-items    : center;
+                    list-style     : none;
+                    padding        : 0;
+
+                    li {
+                        margin-right: 5px;
+
+                        a {
+                            padding         : 8px 12px;
+                            border          : 1px solid #ccc;
+                            background-color: #fff;
+                            color           : #333;
+                            cursor          : pointer;
+                            text-decoration : none;
+                        }
+
+                        &.active a {
+                            background-color: #0366d6;
+                            border-color    : transparent;
+                            color           : white;
+                            min-width       : 32px;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+}

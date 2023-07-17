@@ -1,0 +1,111 @@
+.book-slider-container {
+    height: 300px;
+    width : 100%;
+
+    .book-slider-content {
+        .slick-prev {
+            left               : 5px;
+            width              : 34px;
+            height             : 34px;
+            background-image   : url('../../../assets/images/slider/fa-angle-left_32_8_8e8c8c_none.png');
+            background-position: center;
+            background-repeat  : no-repeat;
+            background-size    : contain;
+            border-radius      : 19px;
+            border             : 1px solid #CCCCCC !important;
+            z-index            : 100;
+
+            &:hover {
+                cursor : pointer;
+                opacity: 0.7;
+            }
+        }
+
+        .slick-next {
+            right              : 5px;
+            width              : 34px;
+            height             : 34px;
+            background-image   : url('../../../assets/images/slider/fa-angle-right_32_8_8e8c8c_none.png');
+            background-position: center;
+            background-repeat  : no-repeat;
+            background-size    : contain;
+            border-radius      : 19px;
+            border             : 1px solid #CCCCCC !important;
+
+
+            &:hover {
+                cursor : pointer;
+                opacity: 0.7;
+            }
+
+        }
+
+        .book-slider-info {
+            position        : relative;
+            background-color: #ffffff;
+            width           : 200px !important;
+            height          : 300px;
+            justify-content : center;
+            align-items     : center;
+
+
+
+            .slider-img {
+                width              : 199px;
+                height             : 200px;
+                background-image   : url('../../../assets/images/Book/8934974158448.jpg');
+                background-position: center;
+                background-repeat  : no-repeat;
+                background-size    : contain;
+            }
+
+            .silder-ten-sach {
+                margin     : 15px 10px;
+                font-weight: 550;
+                font-size  : 13px;
+                line-height: 16px;
+                color      : rgb(56, 56, 61);
+                word-break : break-word;
+            }
+
+
+            &:hover {
+                border-radius: 5px;
+                box-shadow   : rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+                cursor       : pointer;
+            }
+
+            .product-gia {
+
+                .gia {
+                    margin     : 0px 10px;
+                    color      : rgb(255, 66, 78);
+                    text-align : left;
+                    font-size  : 16px;
+                    line-height: 24px;
+                    font-weight: 500;
+                }
+
+                .discount {
+                    color    : rgb(255, 66, 78);
+                    font-size: 13px;
+                }
+            }
+
+            .gia-ban-dau {
+                text-decoration: line-through;
+                font-size      : 14px;
+                line-height    : 24px;
+                font-weight    : 400;
+                margin         : 0 10px;
+
+            }
+
+            &:hover {
+                border-radius: 5px;
+                box-shadow   : rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+                cursor       : pointer;
+            }
+        }
+    }
+}

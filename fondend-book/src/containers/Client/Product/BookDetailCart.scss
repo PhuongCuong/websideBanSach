@@ -1,0 +1,306 @@
+.book-cart-container {
+    .book-cart-content {
+        .text-ten-sach {
+            margin        : 30px 0;
+            text-align    : center;
+            text-transform: uppercase;
+            font-size     : 20px;
+            font-weight   : 600;
+        }
+
+        .info-cungcap {
+            margin  : 5px 50px;
+            display : flex;
+            position: relative;
+
+            .cungcap-left {
+
+                .text-nha-xb {
+
+                    font-size  : 13px;
+                    font-weight: 200;
+
+                    .name-nha-xb {
+                        font-size  : 15px;
+                        margin     : 0 4px;
+                        font-weight: 500;
+                        color      : black;
+                    }
+                }
+
+                .text-nha-cc {
+                    font-size  : 13px;
+                    font-weight: 200;
+
+                    .name-nha-cc {
+                        font-size  : 15px;
+                        margin     : 0 4px;
+                        font-weight: 600;
+                        color      : blue;
+
+                    }
+                }
+            }
+
+            .cungcap-right {
+                position: absolute;
+                right   : 0;
+
+                .text-tg {
+
+                    font-size  : 13px;
+                    font-weight: 200;
+
+                    .name-tg {
+                        font-size  : 15px;
+                        margin     : 0 4px;
+                        font-weight: 500;
+                        color      : black;
+                    }
+                }
+
+                .text-ht {
+                    font-size  : 13px;
+                    font-weight: 200;
+
+                    .hinh-thuc {
+                        font-size  : 15px;
+                        margin     : 0 4px;
+                        font-weight: 500;
+                        color      : black;
+
+                    }
+                }
+            }
+        }
+
+        .time-discount {
+            border          : 1px solid red;
+            margin          : 15px 50px;
+            height          : 55px;
+            border-radius   : 7px;
+            display         : flex;
+            align-items     : center;
+            background-color: rgb(255, 57, 69);
+
+            .discount-img {
+                background-image   : url('../../../assets/images/header/label-flashsale.svg');
+                height             : 45px;
+                width              : 50%;
+                background-position: center;
+                background-repeat  : no-repeat;
+                background-size    : contain;
+                margin             : 0 5px;
+                border-radius      : 10px;
+                background-color   : #ffffff;
+            }
+
+            .time-countdown {
+                height          : 45px;
+                width           : 50%;
+                display         : flex;
+                align-items     : center;
+                background-color: #ffffff;
+                margin          : 0 5px;
+                border-radius   : 10px;
+
+
+                .time-day {
+                    background-color: #000000;
+                    margin-left     : 30px;
+                    margin-right    : 5px;
+                    height          : 30px;
+                    width           : 30px;
+                    border-radius   : 7px;
+                    color           : #fff;
+                    justify-content : center;
+                    align-items     : center;
+                    display         : flex;
+
+                    span {
+                        color    : #fff;
+                        font-size: 20px;
+                    }
+                }
+
+                .time-hour {
+                    background-color: #000000;
+                    margin          : 0 5px;
+                    height          : 30px;
+                    width           : 30px;
+                    border-radius   : 7px;
+                    color           : #fff;
+                    justify-content : center;
+                    align-items     : center;
+                    display         : flex;
+
+                    span {
+                        color    : #fff;
+                        font-size: 20px;
+                    }
+                }
+
+                .time-minute {
+                    background-color: #000000;
+                    margin          : 0 5px;
+
+                    height         : 30px;
+                    width          : 30px;
+                    border-radius  : 7px;
+                    color          : #fff;
+                    justify-content: center;
+                    align-items    : center;
+                    display        : flex;
+
+                    span {
+                        color    : #fff;
+                        font-size: 20px;
+                    }
+                }
+
+                .time-secoun {
+                    background-color: #000000;
+                    margin          : 0 5px;
+
+                    height         : 30px;
+                    width          : 30px;
+                    border-radius  : 7px;
+                    color          : #fff;
+                    justify-content: center;
+                    align-items    : center;
+                    display        : flex;
+
+                    span {
+                        color    : #fff;
+                        font-size: 20px;
+                    }
+                }
+
+                span {
+                    font-size: 20px;
+                }
+            }
+        }
+
+
+
+        .text-gia {
+            margin     : 5px 50px;
+            font-size  : 25px;
+            height     : 40px;
+            display    : flex;
+            align-items: center;
+
+            .gia-discount {
+                font-size   : 32px;
+                font-weight : 600;
+                color       : rgb(255, 57, 69);
+                margin-right: 15px;
+            }
+
+            .gia-bd {
+                color          : #0D0E0F;
+                font-size      : 1rem;
+                font-weight    : 300;
+                text-decoration: line-through;
+            }
+
+            .range-discount {
+                margin          : 0 10px;
+                height          : 30px;
+                width           : 45px;
+                display         : flex;
+                justify-content : center;
+                align-items     : center;
+                background-color: rgb(255, 57, 69);
+                border-radius   : 4px;
+
+                span {
+                    color      : #fff;
+                    font-size  : 1rem;
+                    font-weight: 600;
+                }
+            }
+        }
+
+
+        .text-soluong {
+            display    : flex;
+            align-items: center;
+            margin     : 15px 50px;
+            font-size  : 1.2em;
+            font-weight: 650;
+
+            .desgin-input-number {
+                margin-left    : 50px;
+                height         : 35px;
+                display        : flex;
+                justify-content: center;
+                align-items    : center;
+                width          : 130px;
+                border         : 1px solid #ddd;
+                border-radius  : 7px;
+
+                .input-soluong {
+                    height     : 35px;
+                    width      : 50px;
+                    border     : none;
+                    outline    : none;
+                    margin     : 0 0 !important;
+                    color      : #0D0E0F;
+                    font-weight: 700;
+                    font-size  : 1.2em;
+                    height     : 100%;
+                    text-align : center;
+                    margin     : 0 20px;
+                }
+
+                input.input-soluong::-webkit-outer-spin-button,
+                input.input-soluong::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin            : 0;
+                }
+
+                input[type=number].input-soluong {
+                    -moz-appearance: textfield;
+                }
+
+                .btn-minus {
+                    width          : 35px;
+                    height         : 35px;
+                    display        : flex;
+                    justify-content: center;
+                    align-items    : center;
+
+                    i {
+                        font-size: 15px;
+                        color    : #646464;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                .btn-adds {
+                    width          : 35px;
+                    height         : 35px;
+                    display        : flex;
+                    justify-content: center;
+                    align-items    : center;
+
+                    i {
+                        font-size: 15px;
+                        color    : #646464;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+
+        }
+    }
+}

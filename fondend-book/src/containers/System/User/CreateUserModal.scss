@@ -1,0 +1,113 @@
+.modal-containers {
+    position        : relative;
+    display         : flex;
+    flex-direction  : column;
+    width           : 100%;
+    pointer-events  : auto;
+    background-color: #fff;
+    background-clip : padding-box;
+    border          : 1px solid rgba(0, 0, 0, 0.2);
+    border-radius   : 0.3rem;
+    outline         : 0;
+
+    .modal-headers {
+        padding         : 0 10px;
+        height          : 35px;
+        background-color: #0071ba;
+        color           : white;
+        border          : 1px solid #ddd;
+
+        .modal-title {
+            line-height   : 35px;
+            font-weight   : 500;
+            font-size     : 17px;
+            text-transform: uppercase !important;
+        }
+
+        .modal-btn {
+            border : none;
+            outline: none;
+
+            i {
+                font-size: 20px;
+                color    : black;
+            }
+        }
+    }
+
+    .modal-bodys {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .modal-footers {
+        button.btn-save-user {
+            border       : none;
+            outline      : none;
+            min-width    : 70px;
+            min-height   : 25px;
+            background   : orange;
+            border-radius: 5px;
+        }
+
+
+    }
+}
+
+button.btn-save {
+    border       : none;
+    outline      : none;
+    min-width    : 70px;
+    min-height   : 25px;
+    background   : orange;
+    border-radius: 5px;
+
+    i {
+        font-size: 13px;
+        margin   : 0 4px;
+    }
+}
+
+button.btn-cancel {
+    border       : none;
+    outline      : none;
+    min-width    : 70px;
+    min-height   : 25px;
+    background   : rgb(114, 129, 216);
+    border-radius: 5px;
+
+    i {
+        font-size: 13px;
+        margin   : 0 4px;
+    }
+}
+
+.preview-content {
+    height: 100px;
+
+
+}
+
+.label-upload {
+    padding      : 5px;
+    background   : #ddd;
+    border-radius: 3px;
+    cursor       : pointer;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.preview-image {
+    margin         : 5px 0;
+    height         : 60px;
+    width          : 100%;
+    border         : 1px solid #ddd;
+    background     : center center no-repeat;
+    background-size: contain;
+    cursor         : pointer;
+}
+
+// .fade.modal.show {
+//     z-index: 100;
+// }

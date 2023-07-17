@@ -1,0 +1,28 @@
+.book-info-container {
+    .book-info-content {
+        .book-info-title {
+            margin        : 15px 0;
+            font-size     : 25px;
+            font-weight   : 600;
+            text-align    : center;
+            color         : blue;
+            text-transform: uppercase;
+        }
+
+        .book-info-body {
+            margin: 5px 5px;
+
+            .book-info-tenSach {
+                margin: 5px 0;
+            }
+
+            .book-info-btn {
+                margin: 5px 0;
+
+                .btn-save {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
