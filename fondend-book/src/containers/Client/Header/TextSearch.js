@@ -14,7 +14,8 @@ class TextSearch extends Component {
         this.state = {
             arrBook: [],
             searchText: '',
-            filteredBooks: []
+            filteredBooks: [],
+            arrSellingcategory: []
         }
     }
 
@@ -39,45 +40,59 @@ class TextSearch extends Component {
     }
 
     handleSearchBooks = () => {
-        const { searchText } = this.state;
-        const { arrBook } = this.state;
+        let { searchText } = this.state;
+        let { arrBook } = this.state;
 
         // Lọc sách dựa trên từ khóa tìm kiếm
-        const filteredBooks = arrBook.filter((book) =>
-            book.tenSach.toLowerCase().includes(searchText.toLowerCase())
-        );
+        if (searchText === '') {
+            this.setState({
+                filteredBooks: this.state.arrBook.slice(0, 5),
+            });
+        }
+        else {
+            const filteredBooks = arrBook.filter((book) =>
+                book.tenSach.toLowerCase().includes(searchText.toLowerCase())
+            );
 
-        // Chỉ lấy 5 sản phẩm gần nhất
-        const latestBooks = filteredBooks.slice(0, 5);
+            // Chỉ lấy 5 sản phẩm gần nhất
+            const latestBooks = filteredBooks;
 
-        // Cập nhật kết quả tìm kiếm vào state
-        this.setState({ filteredBooks: latestBooks });
+            // Cập nhật kết quả tìm kiếm vào state
+            this.setState({
+                filteredBooks: latestBooks,
+            });
+        }
+
     };
 
     async componentDidMount() {
         await this.handleGetALLbook()
         if (this.state.searchText === '') {
             this.setState({
-                filteredBooks: this.state.arrBook.slice(0, 5)
+                filteredBooks: this.state.arrBook.slice(0, 5),
+                arrSellingcategory: this.state.arrBook.slice(0, 10)
             })
         }
     }
 
     handleBookInfo = async (item) => {
+        console.log('check item', item)
         if (this.props.history) {
             this.props.history.push(`/book/${item.keyMap}`)
             await this.props.fetchallBookStart(item.keyMap);
 
         }
+        await this.props.handleOffSearch()
     }
 
 
+
     render() {
-        let { arrBook, filteredBooks } = this.state;
+        let { arrBook, filteredBooks, arrSellingcategory, searchText } = this.state;
         return (
             <div className='text-search-container'>
                 <div className='text-search-content'>
-                    <div className='find-text'>
+                    <div className={searchText === '' ? 'find-text' : 'find-text active'}>
                         {filteredBooks && filteredBooks.length > 0
                             && filteredBooks.map((item, index) => {
                                 return (
@@ -92,7 +107,27 @@ class TextSearch extends Component {
                         }
 
                     </div>
-                    <div className='selling-catogery-product'></div>
+                    <div className={searchText === '' ? 'selling-category-product' : 'selling-category-product active'}>
+                        <div className='selling-category-title'>Danh sách sản phẩm bán chạy</div>
+                        <div className='parent-category'>
+                            <div className='category-product'>
+                                {arrSellingcategory && arrSellingcategory.length > 0
+                                    && arrSellingcategory.map((item, index) => {
+                                        return (
+                                            <div className='item-product' key={index}
+                                                onClick={() => this.handleBookInfo(item)}
+                                            >
+                                                <div className='product-img'
+                                                    style={{ backgroundImage: `url(${item.image})` }}
+                                                ></div>
+                                                <div className='product-name'>{item.tenSach}</div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

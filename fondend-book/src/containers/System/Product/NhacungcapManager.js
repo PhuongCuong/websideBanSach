@@ -93,11 +93,13 @@ class NhacungcapManager extends Component {
 
     handleSave = async () => {
         let check = this.handleCheckinput();
+        let { arrNCC } = this.state;
         if (check === true) {
             let maNCC = '';
-            let count = await handlecountAllNCC();
-            if (count && count.errCode === 0) {
-                maNCC = `NCC${count.data + 1}`
+            let count = arrNCC.map(item => parseInt(item.keyMap.match(/\d+$/)[0]));
+            let max = Math.max(...count);
+            if (max) {
+                maNCC = `NCC${max + 1}`
             }
             let data = await handleCreateNewNCC({
                 keyMap: maNCC,

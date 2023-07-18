@@ -44,6 +44,7 @@ class ArrProduct extends Component {
 
     render() {
         let { arrBook } = this.state;
+        console.log('check props', this.props)
         return (
             <div className='arr-product-container'>
                 <div className='arr-product-content'>

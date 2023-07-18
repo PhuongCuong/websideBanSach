@@ -51,11 +51,11 @@ class nhaxuatbanManager extends Component {
         if (item) {
             let data = await handleDeleteNXB(item.keyMap)
             if (data && data.errCode === 0) {
-                toast.success('delete nhacungcap success!');
+                toast.success('delete nhaxuatban success!');
                 await this.handlegetAllNXB()
 
             } else {
-                toast.error('delete nhacungcap error!');
+                toast.error('delete nhaxuatban error!');
 
             }
         }
@@ -93,19 +93,20 @@ class nhaxuatbanManager extends Component {
 
     handleSave = async () => {
         let check = this.handleCheckinput();
+        let { arrNCC } = this.state;
         if (check === true) {
             let maNXB = '';
-            let count = await handlecountAllNXB();
-            console.log('check nxb', count)
-            if (count && count.errCode === 0) {
-                maNXB = `NXB${count.data + 1}`
+            let count = arrNCC.map(item => parseInt(item.keyMap.match(/\d+$/)[0]));
+            let max = Math.max(...count);
+            if (max) {
+                maNXB = `NXB${max + 1}`
             }
             let data = await handleCreateNewNXB({
                 keyMap: maNXB,
                 tenNXB: this.state.tenNXB
             })
             if (data && data.errCode === 0) {
-                toast.success('Create a new nhacungcap success!');
+                toast.success('Create a new nhaxuatban success!');
                 this.setState({
                     maNXB: '',
                     tenNXB: ''

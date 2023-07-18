@@ -48,9 +48,80 @@
                 }
             }
 
+            &.active {
+                max-height   : 100% !important;
+                border-bottom: none !important;
+                overflow-y   : auto !important;
+            }
+
 
         }
 
-        .selling-catogery-product {}
+        .selling-category-product {
+            height: 51%;
+
+            .selling-category-title {
+                font-size  : 15px;
+                line-height: 24px;
+                font-weight: 550;
+                margin     : 5px 5px;
+            }
+
+            .parent-category {
+                display        : flex;
+                justify-content: center;
+                width          : 100%;
+
+                .category-product {
+                    width        : 80%;
+                    height       : 100%;
+                    display      : flex;
+                    flex-wrap    : wrap;
+                    align-content: flex-start;
+                    gap          : 5px;
+
+                    .item-product {
+                        height         : 150px;
+                        width          : 116px;
+                        display        : flex;
+                        justify-content: center;
+                        flex-wrap      : wrap;
+                        align-content  : flex-start;
+
+                        .product-img {
+                            margin-top         : 5px;
+                            width              : 80px;
+                            height             : 80px;
+                            background-image   : url('../../../assets/images/Book/4549526613692.jpg');
+                            background-position: center;
+                            background-repeat  : no-repeat;
+                            background-size    : contain;
+
+                        }
+
+                        .product-name {
+                            margin            : 5px 0;
+                            font-size         : 13px;
+                            line-height       : 16px;
+                            padding           : 6px 0px 0px;
+                            text-align        : center;
+                            overflow          : hidden;
+                            display           : -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                        }
+
+                        &:hover {
+                            box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+                            opacity   : 0.95;
+                        }
+                    }
+                }
+            }
+
+            &.active {
+                display: none;
+            }
+        }
     }
 }

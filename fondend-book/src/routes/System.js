@@ -11,6 +11,7 @@ import nhaxuatbanManager from '../containers/System/Product/nhaxuatbanManager';
 import TheloaiManager from '../containers/System/Product/TheloaiManager';
 import Discount from '../containers/System/Product/Discount';
 import BookManageInfo from '../containers/System/Product/BookManageInfo';
+import BillManage from '../containers/System/Bill/BillManage';
 
 class System extends Component {
     render() {
@@ -25,6 +26,8 @@ class System extends Component {
                         <Route path="/system/nhaxuatban-manage" component={nhaxuatbanManager} />
                         <Route path="/system/theloai-manage" component={TheloaiManager} />
                         <Route path="/system/discount-manage" component={Discount} />
+                        <Route path="/system/bill-manage" component={BillManage} />
+
                         {/* /system/detail-book-manage */}
                         <Route path="/system/detail-book-manage" component={BookManageInfo} />
 

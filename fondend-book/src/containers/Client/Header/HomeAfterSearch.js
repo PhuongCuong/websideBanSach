@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import './HomePage.scss';
+import './HomeAfterSearch.scss';
 import HomeHeader from '../Header/HomeHeader';
-import HomeBody from './HomeBody';
 import Bookcategory from '../Product/Bookcategory';
-import HomeBackgroup from './HomeBackgroup';
-import HomeProduct from './HomeProduct';
-import ArrProduct from './ArrProduct';
+import ArrProduct from '../Home/ArrProduct';
 import {
     handlegetAllbookbycart, handlegetAllTL, handlegetAllBookTL,
     handlegetAllBookbySP, handlegetAllNCC, handlegetAllNCCbySP,
@@ -17,7 +14,7 @@ import ReactPaginate from 'react-paginate';
 
 
 
-class HomePage extends Component {
+class HomeAfterSearch extends Component {
 
     constructor(props) {
         super(props)
@@ -215,6 +212,15 @@ class HomePage extends Component {
         // await this.handlegetAllTL();
         await this.handleGetAllNCC();
         await this.handleaddarrTime();
+        if (this.props.history.location.state) {
+            let { arrBook, originalArrBook } = this.state;
+            let filteredBooks = originalArrBook.filter((book) =>
+                book.tenSach.toLowerCase().includes(this.props.history.location.state.toLowerCase())
+            );
+            this.setState({
+                arrBook: filteredBooks
+            })
+        }
     }
 
     handleselectSP = (keyMap) => {
@@ -254,7 +260,6 @@ class HomePage extends Component {
     };
 
     handleisShowBody = (isShowSearch) => {
-        console.log('check show search', isShowSearch)
     }
 
 
@@ -272,6 +277,7 @@ class HomePage extends Component {
         let offset = this.state.currentPage * itemsPerPage;
         let currentData = data.slice(offset, offset + itemsPerPage);
         let { isShowBody } = this.state;
+        console.log('check arr state', this.props)
         return (
             <div className='homepage-container'>
                 <div className='homepage-content'>
@@ -298,9 +304,9 @@ class HomePage extends Component {
 
                             </div>
                             <div className='body-right'>
-                                <div className='backgroup-body'>
+                                {/* <div className='backgroup-body'>
                                     <HomeBackgroup />
-                                </div>
+                                </div> */}
                                 <div className='body-product'>
                                     <ArrProduct
                                         arrBook={currentData}
@@ -361,4 +367,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeAfterSearch);

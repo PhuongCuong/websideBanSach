@@ -265,11 +265,14 @@ class BookManager extends Component {
 
     handleOnClickSave = async () => {
         let check = this.handleCheckinput();
+        let { arrBook } = this.state;
         if (check === true) {
             let keyMap = '';
-            let count = await handlecountAllBook();
-            if (count && count.errCode === 0) {
-                keyMap = `MS${count.data + 1}`
+            let count = arrBook.map(item => parseInt(item.keyMap.match(/\d+$/)[0]));
+            let max = Math.max(...count);
+
+            if (max) {
+                keyMap = `MS${max + 1}`
             }
             const formData = new FormData();
             formData.append("image", this.state.file)

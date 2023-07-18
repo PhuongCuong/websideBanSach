@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import './HomeHeader.scss';
 import { withRouter } from 'react-router';
 import TextSearch from './TextSearch';
+import { handlegetAllbookbycart } from '../../../services/bookService'
+import * as actions from "../../../store/actions"
 
 
 class HomeHeader extends Component {
@@ -13,22 +15,36 @@ class HomeHeader extends Component {
         this.state = {
             soluongproduct: '',
             searchText: '',
-            isShowSearch: false
+            isShowSearch: false,
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+
+
+    async componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.copybook !== this.props.copybook) {
             this.setState({
                 soluongproduct: this.props.copybook.length
             })
         }
+        if (prevProps.arrBook !== this.props.arrBook) {
+            await this.handleOffSearch();
+        }
+        if (prevState.searchText !== this.state.searchText) {
+            await this.handleShowSearch()
+        }
+
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.setState({
             soluongproduct: this.props.copybook.length
         })
+        document.addEventListener('click', this.handleClickOutside, { capture: true });
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside, { capture: true });
     }
 
     handleShowSearch = async () => {
@@ -63,6 +79,54 @@ class HomeHeader extends Component {
         })
     }
 
+    handleClickOutside = (event) => {
+        const divSearch = document.querySelector('.homeheader-search');
+        if (divSearch && !divSearch.contains(event.target)) {
+            this.handleOffSearch();
+        }
+    }
+
+    handEnterSearch = async (event) => {
+        let { searchText } = this.state;
+        if (event.key === 'Enter') {
+            const currentPath = window.location.pathname;
+            const desiredPath = '/home-search';
+            if (currentPath !== desiredPath) {
+                this.props.history.push({
+                    pathname: desiredPath,
+                    state: this.state.searchText
+                });
+            } else {
+                let { searchText } = this.state;
+                let { arrBook, originalArrBook } = this.props;
+                let filteredBooks = originalArrBook.filter((book) =>
+                    book.tenSach.toLowerCase().includes(searchText.toLowerCase())
+                );
+                await this.props.handleSearch(filteredBooks);
+            }
+        }
+    };
+
+    handleClickSearch = async () => {
+        let { searchText } = this.state;
+        const currentPath = window.location.pathname;
+        const desiredPath = '/home-search';
+        if (currentPath !== desiredPath) {
+            this.props.history.push({
+                pathname: desiredPath,
+                state: this.state.searchText
+            });
+        } else {
+            let { searchText } = this.state;
+            let { arrBook, originalArrBook } = this.props;
+            let filteredBooks = originalArrBook.filter((book) =>
+                book.tenSach.toLowerCase().includes(searchText.toLowerCase())
+            );
+            await this.props.handleSearch(filteredBooks);
+        }
+    }
+
+
 
 
     render() {
@@ -86,16 +150,20 @@ class HomeHeader extends Component {
                                 <input className='text-search' type='text' placeholder='Tìm kiếm'
                                     onChange={(event) => this.handleChangeSearch(event)}
                                     value={this.state.searchText}
-                                    onBlur={() => this.handleOffSearch()}
                                     onFocus={() => this.handleShowSearch()}
+                                    onKeyPress={(event) => this.handEnterSearch(event)}
                                 />
-                                <button className='btn-search'>
+                                <button className='btn-search'
+                                    onClick={() => this.handleClickSearch()}
+                                >
                                     Tìm kiếm
                                 </button>
                             </div>
-                            <div className={`div-search ${isShowSearch ? 'active' : ''}`}>
+                            <div className={`div-search ${isShowSearch ? 'active' : ''}`}
+                            >
                                 <TextSearch
                                     searchText={this.state.searchText}
+                                    handleOffSearch={this.handleOffSearch}
                                 />
                             </div>
 
@@ -169,7 +237,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
     };
 };
 

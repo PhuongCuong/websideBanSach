@@ -92,7 +92,7 @@ class Cart extends Component {
     handleBuycart = () => {
         if (this.props.history) {
             this.props.history.push({
-                pathname: '/show-more-books',
+                pathname: '/home',
                 state: this.state.arrBookDiscount
             })
         }

@@ -122,8 +122,6 @@ class BookSlider extends Component {
 
     render() {
         let { arrBookDiscount, isShowLoding } = this.state;
-        console.log('check object', this.props)
-        console.log('check state', this.state)
 
         return (
             <div className='book-slider-container'>

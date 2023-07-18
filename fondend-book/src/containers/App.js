@@ -28,6 +28,7 @@ import Cart from './Client/Cart/Cart';
 import CartBill from './Client/Cart/CartBill';
 import "react-multi-carousel/lib/styles.css";
 import ShowBook from './Client/Product/ShowBook';
+import HomeAfterSearch from './Client/Header/HomeAfterSearch';
 
 class App extends Component {
 
@@ -68,6 +69,8 @@ class App extends Component {
                                     <Route path={path.CART} exact component={(Cart)} />
                                     <Route path={path.CART_BILL} exact component={(CartBill)} />
                                     <Route path={path.SHOW_BOOK} exact component={(ShowBook)} />
+                                    <Route path={path.SHOW_BOOK} exact component={(ShowBook)} />
+                                    <Route path={path.HOME_SEARCH} exact component={(HomeAfterSearch)} />
 
                                 </Switch>
                             </Scrollbars >

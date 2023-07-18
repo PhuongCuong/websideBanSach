@@ -56,7 +56,7 @@ class TheloaiManager extends Component {
                 await this.handleGetAllNCC()
 
             } else {
-                toast.error('delete nhacungcap error!');
+                toast.error('delete Theloai error!');
 
             }
         }
@@ -94,18 +94,20 @@ class TheloaiManager extends Component {
 
     handleSave = async () => {
         let check = this.handleCheckinput();
+        let { arrNCC } = this.state;
         if (check === true) {
             let TL = '';
-            let count = await handlecountAllTL();
-            if (count && count.errCode === 0) {
-                TL = `TL${count.data + 1}`
+            let count = arrNCC.map(item => parseInt(item.keyMap.match(/\d+$/)[0]));
+            let max = Math.max(...count);
+            if (max) {
+                TL = `TL${max + 1}`
             }
             let data = await handleCreateNewTL({
                 keyMap: TL,
                 theLoai: this.state.tenTL
             })
             if (data && data.errCode === 0) {
-                toast.success('Create a new nhacungcap success!');
+                toast.success('Create a new TheLoai success!');
                 this.setState({
                     maTL: '',
                     tenTL: ''
@@ -126,7 +128,7 @@ class TheloaiManager extends Component {
                 theLoai: this.state.tenTL
             })
             if (data && data.errCode === 0) {
-                toast.success('update NCC is success!')
+                toast.success('update TL is success!')
                 await this.handleClean();
                 await this.handleGetAllNCC()
                 this.setState({

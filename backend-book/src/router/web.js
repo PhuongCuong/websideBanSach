@@ -3,6 +3,7 @@ import userController from '../controllers/userController';
 import homeController from '../controllers/homeController';
 import bookController from '../controllers/bookController';
 import uploadController from '../controllers/uploadController';
+import BillController from '../controllers/BillController';
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
@@ -51,7 +52,6 @@ let initWebRoutes = (app) => {
 
     router.get('/api/get-all-book-by-cart', bookController.handlegetAllBookbyCart)
     router.get('/api/get-all-book-by-TL', bookController.handlegetAllBookbyTL)
-
     router.post('/upload', upload.single('image'), uploadController.uploadFile)
 
 
@@ -64,8 +64,10 @@ let initWebRoutes = (app) => {
     router.get('/api/get-all-NXB-by-san-pham', bookController.handlegetAllNXBbySP)
     router.get('/api/get-all-TL-by-san-pham', bookController.handlegetAllTLbySP)
     router.get('/api/get-all-NCC-by-san-pham', bookController.handlegetAllNCCbySP)
-
     router.get('/api/get-all-book-by-NCC', bookController.handlegetAllBookbyNCC)
+
+    router.get('/api/get-all-bill', BillController.handlegetAllBill)
+    router.get('/api/get-all-bill-detail', BillController.handlegetAllBilldetail)
 
 
 }

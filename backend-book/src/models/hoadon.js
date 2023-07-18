@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     HoaDon.init({
         userId: DataTypes.INTEGER,
         tongTien: DataTypes.STRING,
+        status: DataTypes.STRING
     }, {
         sequelize,
         modelName: 'HoaDon',

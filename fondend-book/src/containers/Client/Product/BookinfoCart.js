@@ -147,7 +147,7 @@ class BookinfoCart extends Component {
     render() {
         let { bookoj, copybook } = this.props;
         let { newCopybook } = this.state;
-
+        console.log('check newbook', newCopybook)
 
         return (
             <div className='book-info-cart-container'>

@@ -7,7 +7,8 @@ export const path = {
     BOOK: '/book/:keyMap',
     CART: '/cart',
     CART_BILL: '/cart-bill',
-    SHOW_BOOK: '/show-more-books'
+    SHOW_BOOK: '/show-more-books',
+    HOME_SEARCH: '/home-search'
 };
 
 export const languages = {

@@ -1,0 +1,139 @@
+.bill-manage-container {
+    .bill-manage-content {
+        .bill-manage-title {
+            margin        : 15px 0;
+            font-size     : 25px;
+            font-weight   : 600;
+            text-align    : center;
+            color         : blue;
+            text-transform: uppercase;
+        }
+
+        .bill-manage-body {
+            margin: 5px 5px;
+
+            .bill-info-customer {
+                margin       : 0 5px;
+                border       : 1px solid #ddd;
+                padding      : 5px 5px;
+                height       : 200px;
+                border-radius: 5px;
+            }
+
+            .bill-table-manager {
+                display: flex;
+
+                .bill-table {
+                    margin: 5px 5px;
+                    width : 60%;
+
+                    .table {
+                        max-height: 500px;
+                        overflow-y: auto;
+                        border    : 1px solid #ddd;
+
+                        thead {
+                            tr {
+                                text-align: center;
+
+                                th {
+                                    padding-top     : 12px;
+                                    padding-bottom  : 12px;
+                                    text-align      : center;
+                                    background-color: gray;
+                                    color           : white;
+                                }
+
+                                &:hover {
+                                    cursor          : pointer;
+                                    background-color: rgba(39, 39, 42, 0.12);
+                                }
+
+                                th {
+                                    border: 1px solid #ddd;
+
+                                }
+                            }
+                        }
+
+                        tr {
+                            text-align: center;
+                            height    : 30px;
+
+
+                            &:hover {
+                                cursor          : pointer;
+                                background-color: rgba(39, 39, 42, 0.12);
+                            }
+                        }
+
+
+
+
+
+
+                    }
+                }
+
+                .bill-detail-table {
+                    width : 39%;
+                    margin: 5px 5px;
+
+                    .table {
+                        max-height: 500px;
+                        overflow-y: auto;
+                        border    : 1px solid #ddd;
+
+                        thead {
+
+                            tr {
+                                text-align: center;
+                                height    : 30px;
+
+                                th {
+                                    padding-top     : 12px;
+                                    padding-bottom  : 12px;
+                                    text-align      : center;
+                                    background-color: gray;
+                                    color           : white;
+                                }
+
+
+
+                                th {
+                                    border: 1px solid #ddd;
+
+                                }
+                            }
+                        }
+
+                        tr {
+                            text-align: center;
+                            height    : 30px;
+
+
+
+                            &:hover {
+                                cursor          : pointer;
+                                background-color: rgba(39, 39, 42, 0.12);
+                            }
+
+                            .img-SP {
+                                background-image   : url('../../../assets/images/Book/8935001853633.jpg');
+                                background-position: center;
+                                background-repeat  : no-repeat;
+                                background-size    : contain;
+                            }
+                        }
+
+
+
+
+
+
+                    }
+                }
+            }
+        }
+    }
+}
