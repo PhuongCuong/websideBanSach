@@ -150,7 +150,6 @@ class BookManager extends Component {
 
     handlegetAllTLbySP = async () => {
         let arrSanPham = await handlegetAllTLbySP(this.state.sanpham);
-        console.log('check arr', arrSanPham)
         if (arrSanPham && arrSanPham.errCode === 0) {
             this.setState({
                 arrTL: arrSanPham.data,
@@ -317,7 +316,6 @@ class BookManager extends Component {
     }
 
     handleDelete = async (data) => {
-        console.log('check data', data)
         if (!data) {
             toast.error('delete book not success!')
         } else {
@@ -399,7 +397,6 @@ class BookManager extends Component {
 
     render() {
         let { arrNCC, arrNXB, arrTL, changeUpdate, arrSanPham } = this.state;
-        console.log('check state', this.state)
         return (
             <LoadingOverlay
                 active={this.state.isShowLoading}

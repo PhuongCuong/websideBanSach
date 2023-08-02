@@ -126,7 +126,6 @@ class HomeProduct extends Component {
 
     render() {
         let { isShowLoding, arrBookDiscount, arrBook } = this.state;
-        console.log('check arr', arrBook)
         return (
             <div className='homeproduct-container'>
                 <div className='homeproduct-content'>

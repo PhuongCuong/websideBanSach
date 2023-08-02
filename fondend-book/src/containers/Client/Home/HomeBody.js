@@ -206,7 +206,6 @@ class HomeBody extends Component {
 
     render() {
         let { arrTL, infoarrDiscount } = this.state;
-        console.log('check arrBook TL', this.state.arrBookTL)
         return (
             <div className='homebody-container'>
                 <div className='homebody-content'>

@@ -14,11 +14,14 @@ let initWebRoutes = (app) => {
     router.post('/api/login', userController.handleLogin)
     router.post('/api/create-new-user', userController.handleCreatenNewUser)
     router.get('/api/get-all-user', userController.handlegetAlluser)
+    router.get('/api/get-all-user-by-email', userController.handlegetAlluserbyEmail)
+    router.post('/api-update-password', userController.updatePassword)
+
     router.get('/api-get-all-allCode-by-type', userController.handlegetAllallCodebytype)
     router.get('/api/test', homeController.getHomepage)
-    router.post('/api/create-new-user-admin', userController.handleCreatenNewUseradmin)
+    router.post('/api/create-new-user-admin', upload.single('image'), userController.handleCreatenNewUseradmin)
     router.delete('/api/delete-user', userController.handleDeleteUser)
-    router.put('/api/update-user', userController.handleUpdateUser)
+    router.put('/api/update-user', upload.single('image'), userController.handleUpdateUser)
 
     router.post('/api/create-new-NXB', bookController.handleCreatNewNXB)
     router.post('/api/create-new-NCC', bookController.handleCreateNewNCC)
@@ -68,7 +71,20 @@ let initWebRoutes = (app) => {
 
     router.get('/api/get-all-bill', BillController.handlegetAllBill)
     router.get('/api/get-all-bill-detail', BillController.handlegetAllBilldetail)
+    router.post('/api/create-new-bill', BillController.handleCreateNewBill)
+    router.post('/api/create-new-bill-detail', BillController.handleCreateNewBilldetail)
+    router.delete('/api/delete-bill', BillController.handleDeleteBill)
+    router.delete('/api/delete-bill-detail', BillController.handleDeleteBilldetail)
+    router.put('/api/update-bill', BillController.handleUpdateBill)
+    router.put('/api/update-bill-detail', BillController.handleUpdateBilldetail)
 
+    router.put('api/update-bill-bill-detail-book', BillController.handleUpdateFull)
+    router.post('/api-update-create-bill-detail', BillController.handleUpdateCreateBillDetail)
+    router.post('/api-delete-bill-and-bill-detail', BillController.handledeletebillandBillDetail)
+    router.get('/api-get-all-bill-by-userId', BillController.handlegetAllbillbyUserId)
+    router.post('/api-comfim-bill-user', BillController.handleComfimbillUser)
+
+    router.get('/api-get-bill-more', BillController.handlegetAllBillMore)
 
 }
 

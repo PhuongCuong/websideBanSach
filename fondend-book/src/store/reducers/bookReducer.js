@@ -29,7 +29,6 @@ const appReducer = (state = initialState, action) => {
                 copybook: []
             }
         case actionTypes.ADD_NEW_ITEM_BOOK:
-            console.log('chekc value', state.bookInfo)
             return {
                 ...state,
                 bookInfo: {

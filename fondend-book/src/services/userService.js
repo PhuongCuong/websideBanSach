@@ -21,7 +21,7 @@ const handleGetallCodeByType = (type) => {
 }
 
 const handleNewUseradmin = (data) => {
-    return axios.post('/api/create-new-user-admin', data)
+    return axios.post('/api/create-new-user-admin', data, { headers: { 'Content-Type': 'multipart/form-data' } })
 }
 
 const handleDeleteUser = (userId) => {
@@ -29,11 +29,20 @@ const handleDeleteUser = (userId) => {
 }
 
 const handleUpdateUser = (data) => {
-    return axios.put('/api/update-user', data)
+    return axios.put('/api/update-user', data, { headers: { 'Content-Type': 'multipart/form-data' } })
 }
+
+const hanlegetAlluserbyemail = (userId) => {
+    return axios.get(`/api/get-all-user-by-email?email=${userId}`)
+}
+
+const handleupdatePassword = (data) => {
+    return axios.post('/api-update-password', data)
+}
+
 
 export {
     handleLogin, handletest, handleNewUser, hanlegetAlluser,
     handleGetallCodeByType, handleNewUseradmin, handleDeleteUser,
-    handleUpdateUser
+    handleUpdateUser, hanlegetAlluserbyemail, handleupdatePassword
 }

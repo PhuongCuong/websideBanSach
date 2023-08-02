@@ -140,38 +140,89 @@
                 }
             }
 
-            .homeheader-login {
-                width          : 130px;
-                height         : 40px;
-                display        : flex;
-                align-items    : center;
-                justify-content: center;
+            .homeheader-parent-login {
+                position: relative;
 
-                .img-login {
-                    background-image   : url('../../../assets/images/header/d7b6a3bd7d57d37ef6e437aa0de4821b.png');
-                    height             : 24px;
-                    width              : 24px;
-                    background-position: center;
-                    background-repeat  : no-repeat;
-                    background-size    : contain;
+                .homeheader-login {
+                    width          : 130px;
+                    height         : 40px;
+                    display        : flex;
+                    align-items    : center;
+                    justify-content: center;
+
+                    .img-login {
+                        background-image   : url('../../../assets/images/header/d7b6a3bd7d57d37ef6e437aa0de4821b.png');
+                        height             : 24px;
+                        width              : 24px;
+                        background-position: center;
+                        background-repeat  : no-repeat;
+                        background-size    : contain;
+
+                    }
+
+                    .text-login {
+                        margin-left: 5px;
+                        font-weight: 400;
+                        font-size  : 14px;
+                        line-height: 150%;
+                        color      : rgb(128, 128, 137);
+                    }
+
+                    &:hover {
+                        cursor          : pointer;
+                        opacity         : 0.95;
+                        border-radius   : 7px;
+                        background-color: #ddd;
+
+                    }
+
 
                 }
 
-                .text-login {
-                    margin-left: 5px;
-                    font-weight: 400;
-                    font-size  : 14px;
-                    line-height: 150%;
-                    color      : rgb(128, 128, 137);
+                .homeheader-login:hover+.homeheader-chill {
+                    display: block;
                 }
 
-                &:hover {
-                    cursor          : pointer;
-                    opacity         : 0.95;
-                    border-radius   : 7px;
-                    background-color: #ddd;
+                .homeheader-chill {
+                    display         : none;
+                    position        : absolute;
+                    top             : 40px;
+                    width           : 250px;
+                    background-color: rgb(255, 255, 255);
+                    border-top      : 1px solid rgb(242, 242, 242);
+                    box-shadow      : rgba(0, 0, 0, 0.28) 0px 6px 12px 0px;
+                    z-index         : 1000;
+                    border-radius   : 5px;
+
+                    &:hover {
+                        display: block;
+                    }
+
+                    .homeheader-login-choose {
+                        display        : flex;
+                        justify-content: center;
+                        align-items    : center;
+                        width          : 100%;
+                        height         : 40px;
+                        font-size      : 15px;
+                        font-weight    : 530;
+
+                        i {
+                            font-size  : 20px;
+                            margin     : 0 5px;
+                            font-weight: 550;
+                        }
+
+                        &:hover {
+                            cursor          : pointer;
+                            background-color: #ddd;
+                            opacity         : 0.95;
+                            border-radius   : 3px;
+                        }
+                    }
                 }
             }
+
 
             .homeheader-cart {
                 position       : relative;

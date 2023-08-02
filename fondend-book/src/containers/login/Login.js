@@ -23,7 +23,11 @@ class Login extends Component {
             cName: '',
             cEmail: '',
             cPassword: '',
+            cPasswordxn: '',
             isShowPass: false,
+            isShowPassSingup: false,
+            isShowPassSingupcomfimg: false,
+            isShowLogin: false
         }
     }
 
@@ -41,13 +45,10 @@ class Login extends Component {
             let { errMessager } = this.state;
             let data = await handleLogin(this.state.email, this.state.password);
             if (data) {
-                this.setState({
-                    errMessager: data.errMessanger
-                })
+                alert(data.errMessanger)
                 if (data.errCode === 0) {
                     this.props.userLoginSuccess(data)
                 }
-                console.log('this state', data)
             }
         } catch (e) {
             console.log(e)
@@ -64,15 +65,25 @@ class Login extends Component {
 
     }
 
-    handleShowPassword = () => {
-        this.setState({
-            isShowPass: !this.state.isShowPass
-        })
+    handleShowPassword = (id) => {
+        if (id === 'password') {
+            this.setState((prevState) => ({
+                isShowPass: !prevState.isShowPass
+            }));
+        } else if (id === 'cPassword') {
+            this.setState((prevState) => ({
+                isShowPassSingup: !prevState.isShowPassSingup
+            }));
+        } else if (id === 'cPasswordxn') {
+            this.setState((prevState) => ({
+                isShowPassSingupcomfimg: !prevState.isShowPassSingupcomfimg
+            }));
+        }
     }
 
     handleCheckInput = () => {
         let isvalude = true;
-        let arr = ['cName', 'cEmail', 'cPassword'];
+        let arr = ['cName', 'cEmail', 'cPassword', 'cPasswordxn'];
         for (let i = 0; i < arr.length; i++) {
             if (!this.state[arr[i]]) {
                 isvalude = false;
@@ -87,209 +98,175 @@ class Login extends Component {
         let { cName, cEmail, cPassword } = this.state;
         let isValid = this.handleCheckInput();
         if (isValid === true) {
-            let data = await handleNewUser({
-                name: cName,
-                email: cEmail,
-                password: cPassword
-            });
-            console.log(data, cName, cEmail, cPassword)
-            if (data && data.errCode === 0) {
-                toast.success('🦄 Create new user success!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
+            if (this.state.cPasswordxn === this.state.cPassword) {
+                let data = await handleNewUser({
+                    name: cName,
+                    email: cEmail,
+                    password: cPassword
                 });
+                if (data && data.errCode === 0) {
+                    toast.success('🦄 Create new user success!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
 
-                this.setState({
-                    cEmail: '',
-                    cName: '',
-                    cPassword: ''
-                })
+                    this.setState({
+                        cEmail: '',
+                        cName: '',
+                        cPassword: '',
+                        cPasswordxn: ''
+                    })
+                } else {
+                    alert(data.errMessanger)
+
+                }
+
 
             }
             else {
-                toast.error('🦄 Create new user error!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-
+                alert('Password xác nhận chưa đúng')
             }
         }
-        // if (!cName || !cEmail || !cPassword) {
-        //     toast.error('🦄 Create new user error!', {
-        //         position: "top-right",
-        //         autoClose: 5000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "light",
-        //     });
-        // }
+    }
 
-        // else {
-
-        // }
+    handleShowlogin = () => {
+        this.setState({
+            isShowLogin: !this.state.isShowLogin
+        })
     }
 
     render() {
-        let { isLogin, errMessager, isShowPass } = this.state;
-        console.log('check props', this.props.isLoggedIn)
+        let { isLogin, errMessager, isShowPass, isShowLogin, isShowPassSingup, isShowPassSingupcomfimg } = this.state;
         return (
-            // <div className="login-wrapper">
-            //     <div className="login-container">
-            //         <div className="form_login">
-            //             <h2 className="title">
-            //                 <FormattedMessage id="login.login" />
-            //             </h2>
-            //             <div className="form-group icon-true">
-            //                 <img className="icon" src={userIcon} alt="this" />
-            //                 <input
-            //                     placeholder={LanguageUtils.getMessageByKey("login.username", lang)}
-            //                     id="username"
-            //                     name="username"
-            //                     type="text"
-            //                     className="form-control"
-            //                     value={username}
-            //                     onChange={this.onUsernameChange}
-            //                 />
-            //             </div>
-
-            //             <div id="phone-input-container" className="form-group icon-true">
-            //                 <img className="icon" src={passIcon} alt="this" />
-            //                 <input
-            //                     placeholder={LanguageUtils.getMessageByKey("login.password", lang)}
-            //                     id="password"
-            //                     name="password"
-            //                     type="password"
-            //                     className="form-control"
-            //                     value={password}
-            //                     onChange={this.onPasswordChange}
-            //                 />
-            //             </div>
-
-            //             {loginError !== '' && (
-            //                 <div className='login-error'>
-            //                     <span className='login-error-message'>{loginError}</span>
-            //                 </div>
-            //             )}
-
-            //             <div className="form-group login">
-            //                 <input
-            //                     ref={this.btnLogin}
-            //                     id="btnLogin"
-            //                     type="submit"
-            //                     className="btn"
-            //                     value={LanguageUtils.getMessageByKey("login.login", lang)}
-            //                     onClick={this.processLogin}
-            //                 />
-            //             </div>
-            //         </div>
-            //     </div>
-            // </div>
             <div className='login-wrapper'>
                 <div className='login-container'>
-                    <div className={isLogin && isLogin === true ? "container" : "container right-panel-active"}>
-                        {/* container right-panel-active */}
-                        <div className="form-container sign-up-container">
-                            <form action="#">
-                                <h1>Create Account</h1>
-                                <div className="social-container">
-                                    <i className="fab fa-facebook-f"></i>
-                                    <i className="fab fa-google-plus-g"></i>
-                                    <i className="fab fa-linkedin-in"></i>
+                    <div className='login-title'>
+
+                    </div>
+                    <div className='login-form'>
+                        <div className='login-form-left'>
+                            {isShowLogin === false ?
+                                <div className='login-form-DN'>
+                                    <div className='login-form-DN-title'>
+                                        <h4>Đăng nhập</h4>
+                                    </div>
+                                    <div className='login-form-input row'>
+                                        <div className='col-12'>
+                                            <label>Email</label>
+                                            <input type='email' className='form-control'
+                                                value={this.state.email}
+                                                onChange={(event) => this.handleOnChangeInput(event, 'email')}
+                                            />
+                                        </div>
+                                        <div className='col-12'>
+                                            <label>Password</label>
+                                            <div className='input-password'>
+                                                <input type={isShowPass === false ? 'password' : 'text'} className='form-control'
+                                                    value={this.state.password}
+                                                    onChange={(event) => this.handleOnChangeInput(event, 'password')}
+                                                />
+                                                <i className={isShowPass === false ? "fas fa-eye-slash" : "fas fa-eye"}
+                                                    onClick={() => this.handleShowPassword('password')}
+                                                ></i>
+                                            </div>
+                                        </div>
+
+                                        <div className='col-12'>
+                                            <button className='btn-dangNhap'
+                                                onClick={() => this.hanleOnClickSingin()}
+                                            >Đăng nhập</button>
+                                        </div>
+                                        <div className='text-dangky col-12'
+                                        >
+                                            <span
+                                                onClick={() => this.handleShowlogin()}
+                                            >Tạo tài khoản?</span>
+                                        </div>
+                                        <div className='text-login-orther col-12'>
+                                            <p>
+                                                <span>Hoặc tiếp tục bằng</span>
+                                            </p>
+                                        </div>
+                                        <div className='orther-login col-12'>
+                                            <div className='logo-login-fab'></div>
+                                            <div className='logo-login-goo'></div>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <span>or use your email for registration</span>
-                                <input type="text" placeholder="Name"
-                                    onChange={(event) => this.handleOnChangeInput(event, 'cName')}
+                                :
+                                <div className='login-form-DK'>
+                                    <div className='login-form-DN-title'>
+                                        <h4>Đăng ký</h4>
+                                    </div>
+                                    <div className='login-form-input row'>
+                                        <div className='col-12'>
+                                            <label>Họ và tên</label>
+                                            <input type='email' className='form-control'
+                                                value={this.state.cName}
+                                                onChange={(event) => this.handleOnChangeInput(event, 'cName')}
+                                            />
+                                        </div>
+                                        <div className='col-12'>
+                                            <label>Email</label>
+                                            <input type='email' className='form-control'
+                                                value={this.state.cEmail}
+                                                onChange={(event) => this.handleOnChangeInput(event, 'cEmail')}
+                                            />
+                                        </div>
+                                        <div className='col-12'>
+                                            <label>Password</label>
+                                            <div className='input-password'>
+                                                <input type={isShowPassSingup === false ? 'password' : 'text'} className='form-control'
+                                                    value={this.state.cPassword}
+                                                    onChange={(event) => this.handleOnChangeInput(event, 'cPassword')}
+                                                />
+                                                <i className={isShowPassSingup === false ? "fas fa-eye-slash" : "fas fa-eye"}
+                                                    onClick={() => this.handleShowPassword('cPassword')}
+                                                ></i>
+                                            </div>
+                                        </div>
+                                        <div className='col-12'>
+                                            <label>Xác nhận Password</label>
+                                            <div className='input-password'>
+                                                <input type={isShowPassSingupcomfimg === false ? 'password' : 'text'} className='form-control'
+                                                    value={this.state.cPasswordxn}
+                                                    onChange={(event) => this.handleOnChangeInput(event, 'cPasswordxn')}
+                                                />
+                                                <i className={isShowPassSingupcomfimg === false ? "fas fa-eye-slash" : "fas fa-eye"}
+                                                    onClick={() => this.handleShowPassword('cPasswordxn')}
+                                                ></i>
+                                            </div>
+                                        </div>
+                                        <div className='col-12'>
+                                            <button className='btn-dangNhap'
+                                                onClick={() => this.handleOnsingup()}
+                                            >Đăng Ký</button>
+                                        </div>
+                                        <div className='col-12'>
+                                            <button className='btn-Backlogin'
+                                                onClick={() => this.handleShowlogin()}
+                                            >Trở lại Đăng Nhập</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
 
-                                    value={this.state.cName}
-                                />
-                                <input type="email" placeholder="Email"
-                                    onChange={(event) => this.handleOnChangeInput(event, 'cEmail')}
-                                    value={this.state.cEmail}
-
-                                />
-                                <input type="password" placeholder="Password"
-                                    onChange={(event) => this.handleOnChangeInput(event, 'cPassword')}
-                                    value={this.state.cPassword}
-
-                                />
-                                <button type='button'
-                                    onClick={() => this.handleOnsingup()}
-                                >Sign Up</button>
-                            </form>
                         </div>
-                        <div className="form-container sign-in-container">
-                            <form action="#">
-                                <h1>Sign in</h1>
-                                <div className="social-container">
-                                    <i className="fab fa-facebook-f"></i>
-                                    <i className="fab fa-google-plus-g"></i>
-                                    <i className="fab fa-linkedin-in"></i>
-                                </div>
-                                <span>or use your account</span>
-                                <input type="email" placeholder="Email"
-                                    onChange={(event) => this.handleOnChangeInput(event, 'email')}
-                                    value={this.state.email}
-                                />
-                                {isShowPass === false ?
-
-                                    <input type="password" placeholder="Password"
-                                        onChange={(event) => this.handleOnChangeInput(event, 'password')}
-                                        value={this.state.password}
-                                    />
-                                    :
-
-                                    <input type="text" placeholder="Password"
-                                        onChange={(event) => this.handleOnChangeInput(event, 'password')}
-                                        value={this.state.password}
-                                    />
-                                }
-
-                                {/* <span className='btn-eye'
-                                    onClick={() => this.handleShowPassword()}
-                                >
-                                    <i className={isShowPass === false ? 'fa fa-eye' : 'fa fa-eye-slash'}></i>
-                                </span> */}
-                                <div className='errMessage'>
-                                    {errMessager}
-                                </div>
-                                <button type='button'
-                                    onClick={() => this.hanleOnClickSingin()}
-                                >Sign In</button>
-                            </form>
-                        </div>
-                        <div className="overlay-container">
-                            <div className="overlay">
-                                <div className="overlay-panel overlay-left">
-                                    <h1>Welcome Back!</h1>
-                                    <p>To keep connected with us please login with your personal info</p>
-                                    <button
-                                        onClick={() => this.handleChangeLogin()}
-                                        className="ghost" id="signIn">Sign In</button>
-                                </div>
-                                <div className="overlay-panel overlay-right">
-                                    <h1>Hello, Friend!</h1>
-                                    <p>Enter your personal details and start journey with us</p>
-                                    <button
-                                        onClick={() => this.handleChangeLogin()}
-                                        className="ghost" id="signUp">Sign Up</button>
-                                </div>
+                        <div className='login-form-right'>
+                            <div className='login-form-logo'></div>
+                            <div className='login-form-text-right'>
+                                <h4>Mua sắm tại Tiki</h4>
+                                <span>Siêu ưu đãi mỗi ngày</span>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div >

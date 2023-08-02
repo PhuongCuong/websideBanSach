@@ -158,14 +158,10 @@ class UserManage extends Component {
                             <tbody>
                                 <tr>
                                     <th>STT</th>
-                                    <th>firstName</th>
-                                    <th>lastName</th>
                                     <th>email</th>
                                     <th>address</th>
                                     <th>phoneNumber</th>
-                                    <th>gender</th>
                                     <th>roleId</th>
-                                    <th>avatar</th>
                                     <th>option</th>
                                 </tr>
                                 {arrUser && arrUser.length > 0
@@ -177,16 +173,11 @@ class UserManage extends Component {
                                         return (
                                             <tr key={index}>
                                                 <td>{index + 1}</td>
-                                                <td>{item.firstName}</td>
-                                                <td>{item.lastName}</td>
                                                 <td>{item.email}</td>
                                                 <td>{item.address}</td>
                                                 <td>{item.phoneNumber}</td>
-                                                <td>{item.genderData ? item.genderData.value : null}</td>
                                                 <td>{item.roleData ? item.roleData.value : null}</td>
-                                                <td><div className='image-user'
-                                                    style={{ backgroundImage: `url(${imagebase64})` }}>
-                                                </div></td>
+
                                                 <td>
                                                     <button className='btn-delete-um'
                                                         onClick={() => this.handleDeleteUser(item)}

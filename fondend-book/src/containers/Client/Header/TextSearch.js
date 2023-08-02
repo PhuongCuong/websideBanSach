@@ -5,6 +5,7 @@ import './TextSearch.scss'
 import { handlegetAllbookbycart } from '../../../services/bookService'
 import { withRouter } from 'react-router';
 import * as actions from "../../../store/actions"
+import { hanlegetAllBillmore } from '../../../services/BillService';
 
 
 class TextSearch extends Component {
@@ -15,7 +16,8 @@ class TextSearch extends Component {
             arrBook: [],
             searchText: '',
             filteredBooks: [],
-            arrSellingcategory: []
+            arrSellingcategory: [],
+            arrproductmore: []
         }
     }
 
@@ -24,6 +26,15 @@ class TextSearch extends Component {
         if (res && res.errCode === 0) {
             this.setState({
                 arrBook: res.data
+            })
+        }
+    }
+
+    handleGetAllpaid = async () => {
+        let data = await hanlegetAllBillmore();
+        if (data && data.errCode === 0) {
+            this.setState({
+                arrproductmore: data.data
             })
         }
     }
@@ -66,17 +77,22 @@ class TextSearch extends Component {
     };
 
     async componentDidMount() {
-        await this.handleGetALLbook()
+        await this.handleGetALLbook();
+        await this.handleGetAllpaid()
         if (this.state.searchText === '') {
+            let arrBook = this.state.arrBook.map((book) => {
+                let item = this.state.arrproductmore.find((item) => book.keyMap === item.bookId);
+                return item ? { ...book, soluong: item.soluong } : book;
+            });
+            arrBook.sort((a, b) => +b.soluong - +a.soluong)
             this.setState({
                 filteredBooks: this.state.arrBook.slice(0, 5),
-                arrSellingcategory: this.state.arrBook.slice(0, 10)
+                arrSellingcategory: arrBook.slice(0, 10)
             })
         }
     }
 
     handleBookInfo = async (item) => {
-        console.log('check item', item)
         if (this.props.history) {
             this.props.history.push(`/book/${item.keyMap}`)
             await this.props.fetchallBookStart(item.keyMap);

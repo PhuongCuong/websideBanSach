@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.allCode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' })
       User.belongsTo(models.allCode, { foreignKey: 'roleId', targetKey: 'keyMap', as: 'roleData' })
 
+      User.hasMany(models.HoaDon, { foreignKey: 'userId', sourceKey: 'id', as: 'HoaDonData' });
+
     }
   }
   User.init({
@@ -24,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     gender: DataTypes.STRING,
     roleId: DataTypes.STRING,
-    image: DataTypes.TEXT('long'),
+    image: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'User',

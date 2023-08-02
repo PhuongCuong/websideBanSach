@@ -1,0 +1,235 @@
+.list-bill-container {
+    height: 100%;
+
+    .list-bill-content {
+        height: 100%;
+
+        .list-bill-header {
+            position: sticky;
+            top     : 0;
+            z-index : 200;
+        }
+
+        .list-bill-body {
+            width           : 100%;
+            height          : 100%;
+            display         : flex;
+            background-color: #f5f5fa;
+            justify-content : center;
+
+            .list-bill-in-body {
+                margin : 20px 0;
+                width  : 80%;
+                display: flex;
+
+                .list-bill-left {
+                    width: 20%;
+                }
+
+                .list-bill-right {
+                    margin       : 0 10px;
+                    display      : flex;
+                    flex-wrap    : wrap;
+                    align-content: flex-start;
+                    width        : 80%;
+
+                    .list-bill-title {
+                        font-size  : 20px;
+                        line-height: 32px;
+                        font-weight: 300;
+                        height     : 50px;
+                    }
+
+                    .list-bill-filter {
+                        border-radius   : 8px;
+                        background-color: rgb(255, 255, 255);
+                        width           : 100%;
+                        height          : 42px;
+                        margin          : 10px 0;
+                        display         : flex;
+                        align-items     : center;
+
+                        .list-bill-item {
+                            width           : 16.6667%;
+                            padding         : 12px 0px;
+                            text-align      : center;
+                            color           : rgb(128, 128, 137);
+                            border-bottom   : none;
+                            line-height     : 1.15;
+                            text-size-adjust: 100%;
+                            font-family     : Inter, Helvetica, Arial, sans-serif;
+                            font-size       : 14px;
+
+                            &:hover {
+                                cursor : pointer;
+                                opacity: 0.95;
+                            }
+
+                            &.active {
+                                width        : 16.6667%;
+                                padding      : 12px 0px;
+                                text-align   : center;
+                                color        : rgb(13, 92, 182);
+                                border-bottom: 2px solid rgb(13, 92, 182);
+                                line-height  : 1.15;
+                                font-size    : 14px;
+                            }
+                        }
+                    }
+
+                    .list-bill-find {
+                        width           : 100%;
+                        height          : 36px;
+                        margin-bottom   : 10px;
+                        display         : flex;
+                        align-items     : center;
+                        border          : 1px solid rgb(196, 196, 207);
+                        border-radius   : 4px;
+                        background-color: rgb(255, 255, 255);
+
+
+
+                        .find-icon {
+                            width          : 24px;
+                            height         : 24px;
+                            display        : flex;
+                            justify-content: center;
+                            align-items    : center;
+                            margin         : 0 10px;
+
+                            i {
+                                color    : rgb(128, 128, 137);
+                                font-size: 20px;
+
+                            }
+                        }
+
+                        .find-input {
+                            width: 86%;
+
+                            input {
+                                width  : 86%;
+                                outline: none;
+                                border : none;
+                            }
+                        }
+
+                        .btn-text-find {
+                            width      : 10%;
+                            color      : rgb(11, 116, 229);
+                            border-left: 2px solid rgb(221, 221, 227);
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .list-bill-child {
+                        border-radius   : 8px;
+                        background-color: rgb(255, 255, 255);
+                        width           : 100%;
+                        height          : 60%;
+
+                        .show-bill-detail {
+                            position  : relative;
+                            width     : 100%;
+                            max-height: 100%;
+                            z-index   : 1;
+                            overflow  : hidden;
+                            overflow-y: auto;
+
+
+                            .Cancel-show-all-bill {
+                                right          : 0;
+                                top            : 0;
+                                width          : 30px;
+                                height         : 30px;
+                                display        : flex;
+                                align-items    : center;
+                                justify-content: center;
+                                border-radius  : 50%;
+                                position       : absolute;
+                                z-index        : 2;
+
+
+                                span {
+                                    i {
+                                        font-size: 25px;
+                                        color    : #0071ba;
+                                    }
+                                }
+
+                                &:hover {
+                                    cursor : pointer;
+                                    opacity: 0.95;
+                                }
+                            }
+                        }
+
+                        .list-bill-show {
+                            margin: 5px 5px;
+
+                            .table-list-bill {
+                                .table {
+                                    thead {
+                                        th {
+                                            text-align: center;
+                                        }
+                                    }
+
+                                    tbody {
+                                        td {
+                                            text-align: center;
+                                        }
+
+                                        .show-detail {
+                                            color: #0b74e5;
+
+                                            &:hover {
+                                                cursor : pointer;
+                                                opacity: 0.95;
+                                            }
+                                        }
+
+                                        .image-book {
+                                            background-position: center;
+                                            background-repeat  : no-repeat;
+                                            background-size    : contain;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .list-bill-unbill {
+                            display        : flex;
+                            justify-content: center;
+                            align-items    : center;
+                            width          : 100%;
+                            height         : 100%;
+                            padding        : 50px;
+                            flex-direction : column;
+
+                            .list-bill-img {
+                                width              : 200px;
+                                height             : 200px;
+                                background-image   : url('../../../assets/images/cart/empty-order.png');
+                                background-repeat  : no-repeat;
+                                background-position: center;
+                                background-size    : contain;
+                            }
+
+                            p {
+                                margin-top : 15px;
+                                color      : rgb(56, 56, 61);
+                                font-size  : 16px;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

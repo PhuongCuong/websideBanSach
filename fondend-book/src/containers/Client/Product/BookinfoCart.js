@@ -17,7 +17,11 @@ class BookinfoCart extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-
+        if (prevProps.copybook !== this.props.copybook) {
+            this.setState({
+                newCopybook: [...this.props.copybook]
+            })
+        }
     }
 
     componentDidMount() {
@@ -27,127 +31,109 @@ class BookinfoCart extends Component {
     }
 
     handleThemCart = async () => {
-        let { bookInfo, copybook } = this.props;
-        let { newCopybook } = this.state
-        console.log('check newbook', newCopybook)
+        const { bookInfo, copybook, soluong, updatedCopybook } = this.props;
+        const { newCopybook } = this.state;
         let isExist = false;
+        let foundItem = false;
 
         if (newCopybook && newCopybook.length > 0) {
-            newCopybook.map((item, index) => {
+            for (let i = 0; i < newCopybook.length; i++) {
+                const item = newCopybook[i];
                 if (item.keyMap === bookInfo.keyMap) {
-                    if (this.props.soluong <= item.soLuong
-                    ) {
-                        item.soluongmua += this.props.soluong;
-                        item.soLuong -= this.props.soluong;
+                    if (soluong <= item.soLuong) {
+                        item.soluongmua += soluong;
+                        item.soLuong -= soluong;
                         isExist = true;
-                        console.log('check item click', item)
+                        foundItem = true;
                     } else {
-                        alert(`số lượng trong kho còn lại:${item.soLuong} quyển`)
+                        alert(`Số lượng trong kho còn lại: ${item.soLuong} quyển`);
+                        return;
                     }
                 }
-            });
+            }
 
-            if (!isExist) {
-                if (this.props.soluong <= bookInfo.soLuong) {
-                    bookInfo.soLuong -= this.props.soluong
-                    let object = {
-                        ...bookInfo,
-                        'soluongmua': this.props.soluong
+            if (!foundItem) {
+                if (soluong <= bookInfo.soLuong) {
+                    bookInfo.soLuong -= soluong;
+                    const object = {
+                        ...bookInfo, // Tạo bản sao của bookInfo
+                        soluongmua: soluong
                     };
-
                     newCopybook.push(object);
-                }
-                else {
-                    alert(`số lượng trong kho còn lại:${bookInfo.soLuong} quyển`)
-
+                    await updatedCopybook(newCopybook);
+                } else {
+                    alert(`Số lượng trong kho còn lại: ${bookInfo.soLuong} quyển`);
                 }
             }
-
-            await this.props.updatedCopybook(newCopybook);
-
         } else {
-            if (this.props.soluong <= bookInfo.soLuong) {
-                bookInfo.soLuong -= this.props.soluong
-                let object = {
-                    ...bookInfo,
-                    'soluongmua': this.props.soluong
+            if (soluong <= bookInfo.soLuong) {
+                bookInfo.soLuong -= soluong;
+                const object = {
+                    ...bookInfo, // Tạo bản sao của bookInfo
+                    soluongmua: soluong
                 };
-
                 newCopybook.push(object);
+                await updatedCopybook(newCopybook);
+            } else {
+                alert(`Số lượng trong kho còn lại: ${bookInfo.soLuong} quyển`);
             }
-            else {
-                alert(`số lượng trong kho còn lại:${bookInfo.soLuong} quyển`)
-            }
-
-            await this.props.updatedCopybook(newCopybook);
-
         }
-
-
     }
 
+
     handleMuangay = async () => {
-        let { bookInfo, copybook } = this.props;
+        const { bookInfo, copybook, soluong, updatedCopybook } = this.props;
         let newCopybook = [...copybook];
         let isExist = false;
 
         if (newCopybook && newCopybook.length > 0) {
-            newCopybook.map((item, index) => {
-                if (newCopybook[index].keyMap === bookInfo.keyMap) {
-                    if (this.props.soluong <= newCopybook[index].soLuong
-                    ) {
+            for (let index = 0; index < newCopybook.length; index++) {
+                const item = newCopybook[index];
+                if (item.keyMap === bookInfo.keyMap) {
+                    if (soluong <= item.soLuong) {
                         newCopybook[index].soluongmua += 1;
                         newCopybook[index].soLuong -= 1;
                         isExist = true;
                     } else {
-                        alert(`số lượng trong kho còn lại:${bookInfo.soLuong} quyển`)
+                        alert(`Số lượng trong kho còn lại: ${item.soLuong} quyển`);
+                        return;
                     }
                 }
-            });
+            }
 
             if (!isExist) {
-                if (this.props.soluong <= bookInfo.soLuong) {
-                    bookInfo.soLuong -= this.props.soluong
-                    let object = {
+                if (soluong <= bookInfo.soLuong) {
+                    bookInfo.soLuong -= soluong;
+                    const object = {
                         ...bookInfo,
-                        'soluongmua': 1
+                        soluongmua: 1
                     };
-
                     newCopybook.push(object);
-                }
-                else {
-                    alert(`số lượng trong kho còn lại:${bookInfo.soLuong} quyển`)
-
+                    await updatedCopybook(newCopybook);
+                } else {
+                    alert(`Số lượng trong kho còn lại: ${bookInfo.soLuong} quyển`);
                 }
             }
-
-            await this.props.updatedCopybook(newCopybook);
-
         } else {
-            if (this.props.soluong <= bookInfo.soLuong) {
-                bookInfo.soLuong -= this.props.soluong
-                let object = {
+            if (soluong <= bookInfo.soLuong) {
+                bookInfo.soLuong -= soluong;
+                const object = {
                     ...bookInfo,
-                    'soluongmua': 1
+                    soluongmua: 1
                 };
-
                 newCopybook.push(object);
+                await updatedCopybook(newCopybook);
+            } else {
+                alert(`Số lượng trong kho còn lại: ${bookInfo.soLuong} quyển`);
             }
-            else {
-                alert(`số lượng trong kho còn lại:${bookInfo.soLuong} quyển`)
-            }
-
-            await this.props.updatedCopybook(newCopybook);
-
         }
-
     }
+
 
 
     render() {
         let { bookoj, copybook } = this.props;
         let { newCopybook } = this.state;
-        console.log('check newbook', newCopybook)
 
         return (
             <div className='book-info-cart-container'>

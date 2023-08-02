@@ -166,7 +166,6 @@ class TableDiscountManager extends Component {
                             if (item.ngayKT) {
                                 ngayKT = moment(+item.ngayKT).format('DD/MM/yyyy HH:mm:ss');
                             }
-                            console.log('check time', this.convertTimeToMilliseconds(item.timeDiff))
                             return (
                                 <tr key={index}>
                                     <td>{item.maSach}</td>

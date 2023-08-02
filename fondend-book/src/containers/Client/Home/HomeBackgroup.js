@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './HomeBackgroup.scss'
 import Slider from 'react-slick';
+import { hanlegetAllBillmore } from '../../../services/BillService';
 
 
 class HomeBackgroup extends Component {
@@ -10,7 +11,8 @@ class HomeBackgroup extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            sotfarr: 'banchay',
+            arrproductmore: []
         }
     }
 
@@ -18,7 +20,34 @@ class HomeBackgroup extends Component {
 
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        let data = await hanlegetAllBillmore();
+        if (data && data.errCode === 0) {
+            this.setState({
+                arrproductmore: data.data
+            })
+        }
+    }
+
+    handleSoftArr = async (id) => {
+        let { arrproductmore } = this.state;
+        this.setState({
+            sotfarr: id
+        })
+        let arrBook = [...this.props.arrBook];
+        if (id === 'banchay') {
+            arrBook = this.props.originalArrBook.map((book) => {
+                let item = arrproductmore.find((item) => book.keyMap === item.bookId);
+                return item ? { ...book, soluong: item.soluong } : book;
+            });
+            arrBook.sort((a, b) => +b.soluong - +a.soluong)
+        }
+        else if (id === 'thapdencao') {
+            arrBook.sort((a, b) => a.gia - b.gia)
+        } else if (id === 'caodenthap') {
+            arrBook.sort((a, b) => b.gia - a.gia)
+        }
+        await this.props.handleSort(arrBook)
     }
 
 
@@ -30,6 +59,7 @@ class HomeBackgroup extends Component {
             slidesToShow: 2,
             slidesToScroll: 2,
         };
+        let { sotfarr } = this.state;
         return (
             <div className='home-back-group-container'>
                 <div className='home-back-group-content'>
@@ -168,21 +198,25 @@ class HomeBackgroup extends Component {
                                             <div className='img-3'></div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </Slider>
                     </div>
                     <div className='home-back-group-category'>
-                        <div className='ban-chay'>
+                        <div className={sotfarr === 'banchay' ? 'ban-chay active' : 'ban-chay'}
+                            onClick={() => this.handleSoftArr('banchay')}
+                        >
                             <span>Bán Chạy</span>
                         </div>
-                        <div className='gia-cao-den-thap'>
+                        <div className={sotfarr === 'caodenthap' ? 'gia-cao-den-thap active' : 'gia-cao-den-thap'}
+                            onClick={() => this.handleSoftArr('caodenthap')}
+
+                        >
                             <span>Giá Cao Đến Thấp</span>
                         </div>
-                        <div className='gia-thap-den-cao'>
+                        <div className={sotfarr === 'thapdencao' ? 'gia-thap-den-cao active' : 'gia-thap-den-cao'}
+                            onClick={() => this.handleSoftArr('thapdencao')}
+                        >
                             <span>Giá Thấp Đến Cao</span>
                         </div>
 

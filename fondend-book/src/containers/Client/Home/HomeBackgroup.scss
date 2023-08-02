@@ -804,8 +804,6 @@
             align-items: center;
 
             .ban-chay {
-                color         : rgb(11, 116, 229);
-                font-weight   : 500;
                 position      : relative;
                 margin        : 0 5px;
                 text-transform: capitalize;
@@ -818,16 +816,18 @@
                 display       : inline-block;
                 font-size     : 14px;
                 padding       : 12px 16px;
-                border-bottom : 4px solid rgb(11, 116, 229);
                 border-radius : 2px;
 
-                span {
-                    color: rgb(11, 116, 229);
 
-                }
 
                 &:hover {
                     cursor: pointer;
+                }
+
+                &.active {
+                    border-bottom: 4px solid rgb(11, 116, 229);
+                    color        : rgb(11, 116, 229);
+
                 }
             }
 
@@ -848,6 +848,12 @@
                 &:hover {
                     cursor: pointer;
                 }
+
+                &.active {
+                    border-bottom: 4px solid rgb(11, 116, 229);
+                    color        : rgb(11, 116, 229);
+
+                }
             }
 
             .gia-thap-den-cao {
@@ -866,6 +872,12 @@
 
                 &:hover {
                     cursor: pointer;
+                }
+
+                &.active {
+                    border-bottom: 4px solid rgb(11, 116, 229);
+                    color        : rgb(11, 116, 229);
+
                 }
             }
         }

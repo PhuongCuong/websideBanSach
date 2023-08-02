@@ -22,7 +22,8 @@ class EditUserModal extends Component {
 
             selectedGender: '',
             selectedRoleId: '',
-            previewImg: [],
+            file: {},
+            preview: [],
             firstName: '',
             lastName: '',
             email: '',
@@ -55,16 +56,8 @@ class EditUserModal extends Component {
                 gender: this.props.DataUser.gender,
                 roleId: this.props.DataUser.roleId,
                 avatar: this.props.DataUser.image,
+                preview: this.props.DataUser.image
             })
-            let imagebase64 = '';
-            if (this.props.DataUser.image) {
-                imagebase64 = new Buffer(this.props.DataUser.image, 'base64').toString('binary');
-                let objectUrl = CommonUtils.dataURLtoBlobURL(imagebase64);
-                this.setState({
-                    avatar: imagebase64,
-                    previewImg: objectUrl
-                })
-            }
         }
     }
 
@@ -103,21 +96,16 @@ class EditUserModal extends Component {
 
 
     handleOnChangefile = async (event) => {
-        let data = event.target.files;
-        let file = data[0];
-        if (file) {
-            let base64 = await CommonUtils.getBase64(file);
-            let ObjectURL = URL.createObjectURL(file);
-            this.setState({
-                previewImg: ObjectURL,
-                avatar: base64
-            })
-        }
-
+        let file = event.target.files[0];
+        let ObjectURL = URL.createObjectURL(file);
+        this.setState({
+            file: file,
+            preview: ObjectURL
+        })
     }
 
     handlePreviewImg = () => {
-        if (!this.state.previewImg) return;
+        if (!this.state.preview) return;
         this.setState({
             isOpen: true
         })
@@ -133,7 +121,7 @@ class EditUserModal extends Component {
 
     handleCheckinput = () => {
         let isCheck = true;
-        let arr = ['firstName', 'lastName', 'email', 'password', 'address', 'phoneNumber', 'gender', 'roleId', 'avatar'];
+        let arr = ['firstName', 'lastName', 'email', 'password', 'address', 'phoneNumber', 'gender', 'roleId'];
         for (let i = 0; i < arr.length; i++) {
             if (!this.state[arr[i]]) {
                 isCheck = false;
@@ -147,20 +135,19 @@ class EditUserModal extends Component {
     handleOnClickSave = async () => {
         let check = this.handleCheckinput();
         if (check === true) {
-            let data = {
-                id: this.state.userId,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                password: this.state.password,
-                address: this.state.address,
-                phoneNumber: this.state.phoneNumber,
-                gender: this.state.gender,
-                roleId: this.state.roleId,
-                avatar: this.state.avatar,
-
-            }
-            let updateUser = await handleUpdateUser(data);
+            const formData = new FormData();
+            formData.append("firstName", this.state.firstName)
+            formData.append("lastName", this.state.lastName)
+            formData.append("email", this.state.email)
+            formData.append("password", this.state.password)
+            formData.append("address", this.state.address)
+            formData.append("phoneNumber", this.state.phoneNumber)
+            formData.append("gender", this.state.gender)
+            formData.append("roleId", this.state.roleId)
+            formData.append("image", this.state.file)
+            formData.append("id", this.state.userId)
+            console.log('check data', formData)
+            let updateUser = await handleUpdateUser(formData);
             if (updateUser && updateUser.errCode === 0) {
                 toast.success('🦄 update user success!', {
                     position: "top-right",
@@ -174,7 +161,7 @@ class EditUserModal extends Component {
                 });
 
                 this.setState({
-                    previewImg: [],
+                    preview: [],
                     firstName: '',
                     lastName: '',
                     email: '',
@@ -183,7 +170,6 @@ class EditUserModal extends Component {
                     phoneNumber: '',
                     gender: '',
                     roleId: '',
-                    avatar: '',
                     userId: '',
                 })
 
@@ -319,7 +305,7 @@ class EditUserModal extends Component {
                                 <label className='label-upload' htmlFor='previewImg'>Tải ảnh <i className="fas fa-upload"></i></label>
                                 <div className='preview-image'
                                     // onClick={() => this.handlePreviewImg()}
-                                    style={{ backgroundImage: `url(${this.state.previewImg})` }}
+                                    style={{ backgroundImage: `url(${this.state.preview})` }}
                                 ></div>
                             </div>
                         </div>

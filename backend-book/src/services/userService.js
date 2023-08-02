@@ -1,5 +1,7 @@
 import db from '../models/index';
 
+import { uploadfile } from './uploadS3'
+
 let handleLoginUser = (email, password) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -8,7 +10,6 @@ let handleLoginUser = (email, password) => {
             if (check === true) {
 
                 let data = await db.User.findOne({
-                    attributes: ['id', 'firstName', 'lastName', 'email', 'address', 'phoneNumber', 'gender', 'roleId', 'password'],
                     where: {
                         email: email,
                     }
@@ -69,15 +70,32 @@ let handleCreatenNewUser = (data) => {
             let userData = {};
             let check = await checkemail(data.email);
             if (check === true) {
-                userData.errCode = 2;
-                userData.errMessager = 'Email existed';
+                let finduser = await db.User.findOne({
+                    where: {
+                        email: data.email
+                    }
+                })
+                if (finduser && !finduser.password) {
+                    await db.User.update({
+                        password: data.password
+                    }, {
+                        where: {
+                            email: data.email
+                        }
+                    });
+                    userData.errCode = 0;
+                    userData.errMessager = 'create new user success!';
+                } else if (finduser && finduser.password) {
+                    userData.errCode = 2;
+                    userData.errMessager = 'Email existed';
+                }
+
             } else {
                 let datas = await db.User.create({
                     email: data.email,
                     password: data.password,
                     firstName: data.name,
                     roleId: 'R2',
-
                 })
                 if (datas) {
                     userData.errCode = 0;
@@ -175,7 +193,7 @@ let handlegetAllallCodebytype = (type) => {
     })
 }
 
-let handleCreatenNewUseradmin = (data) => {
+let handleCreatenNewUseradmin = (data, file) => {
     return new Promise(async (resolve, reject) => {
         try {
             let userData = {};
@@ -184,6 +202,7 @@ let handleCreatenNewUseradmin = (data) => {
                 userData.errCode = 2;
                 userData.errMessager = 'Email existed';
             } else {
+                let link = await uploadfile(file);
                 let datas = await db.User.create({
                     email: data.email,
                     password: data.password,
@@ -193,11 +212,12 @@ let handleCreatenNewUseradmin = (data) => {
                     phoneNumber: data.phonenumber,
                     gender: data.gender,
                     roleId: data.roleId,
-                    image: data.image
+                    image: link
                 })
                 if (datas) {
                     userData.errCode = 0;
                     userData.errMessager = 'create new user success!';
+                    userData.id = datas.id
                 } else {
                     userData.errCode = 3;
                     userData.errMessager = 'create new user not success!';
@@ -242,7 +262,7 @@ let handleDeleteUser = (userId) => {
     })
 }
 
-let handleUpdateUser = (userId) => {
+let handleUpdateUser = (userId, file) => {
     return new Promise(async (resolve, reject) => {
         try {
             let userData = {};
@@ -255,6 +275,13 @@ let handleUpdateUser = (userId) => {
                 userData.errCode = 2;
                 userData.errMessager = 'not find user';
             } else {
+                let link = '';
+                if (file) {
+                    link = await uploadfile(file);
+
+                } else {
+                    link = userId.image;
+                }
                 await db.User.update({
                     firstName: userId.firstName,
                     lastName: userId.lastName,
@@ -264,7 +291,7 @@ let handleUpdateUser = (userId) => {
                     phoneNumber: userId.phoneNumber,
                     gender: userId.gender,
                     roleId: userId.roleId,
-                    image: userId.avatar
+                    image: link
                 }, {
                     where: {
                         id: userId.id
@@ -281,6 +308,84 @@ let handleUpdateUser = (userId) => {
     })
 }
 
+let handlegetAlluserbyEmail = (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let userData = {};
+            let data = '';
+            if (userId === 'ALL') {
+                data = await db.User.findAll({
+                    include: [
+                        { model: db.allCode, as: 'genderData', attributes: ['value'] },
+                        { model: db.allCode, as: 'roleData', attributes: ['value'] },
+
+                    ]
+                });
+            } if (userId && userId !== 'ALL') {
+                data = await db.User.findOne({
+                    where: {
+                        email: userId
+                    },
+                    include: [
+                        { model: db.allCode, as: 'genderData', attributes: ['value'] },
+                        { model: db.allCode, as: 'roleData', attributes: ['value'] },
+
+                    ]
+                })
+            } else {
+                userData.errCode = 1;
+                userData.errMessager = 'Missing valid undefid!';
+                userData.data = {};
+            }
+
+            if (data) {
+                userData.errCode = 0;
+                userData.errMessager = 'ok!';
+                userData.data = data;
+            } else {
+                userData.errCode = 1;
+                userData.errMessager = 'Missing valid undefid!';
+                userData.data = {};
+
+            }
+            resolve(userData)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let updatePassword = (datainput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let userData = {};
+            let data = '';
+            data = await db.User.findOne({
+                where: {
+                    id: datainput.id
+                }
+            })
+            if (data && data.password === datainput.passwordbefor) {
+                await db.User.update({
+                    password: datainput.passwordcomfim
+                }, {
+                    where: {
+                        id: datainput.id
+                    }
+                })
+                userData.errCode = 0;
+                userData.errMessager = 'ok!';
+            } else {
+                userData.errCode = 1;
+                userData.errMessager = 'Password chưa chính xác!';
+            }
+            resolve(userData)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     handleLoginUser: handleLoginUser,
     checkemail: checkemail,
@@ -289,5 +394,7 @@ module.exports = {
     handlegetAllallCodebytype: handlegetAllallCodebytype,
     handleCreatenNewUseradmin: handleCreatenNewUseradmin,
     handleDeleteUser: handleDeleteUser,
-    handleUpdateUser: handleUpdateUser
+    handleUpdateUser: handleUpdateUser,
+    handlegetAlluserbyEmail: handlegetAlluserbyEmail,
+    updatePassword: updatePassword
 }

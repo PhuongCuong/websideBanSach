@@ -140,7 +140,6 @@ class BookManageInfo extends Component {
 
     render() {
         let { arrBook, isShowupdate, bookId } = this.state;
-        console.log('check masach', bookId)
         return (
             <div className='book-info-container'>
                 <div className='book-info-content'>

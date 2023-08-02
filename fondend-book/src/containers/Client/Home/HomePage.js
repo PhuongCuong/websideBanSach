@@ -14,6 +14,7 @@ import {
     handlegetAllBookNCC
 } from '../../../services/bookService'
 import ReactPaginate from 'react-paginate';
+import * as actions from "../../../store/actions"
 
 
 
@@ -96,7 +97,6 @@ class HomePage extends Component {
     handlegetMount = (mount) => {
         let { originalArrBook } = this.state;
         let filteredArrBook = []
-        console.log('check mount', mount)
 
 
         if (mount === 'duoi-40000') {
@@ -135,7 +135,6 @@ class HomePage extends Component {
             let frommount = +this.state.frommount;
             let aboutmount = +this.state.aboutmount;
             filteredArrBook = originalArrBook.filter(item => item.gia >= frommount && item.gia < aboutmount);
-            console.log('check fill', filteredArrBook)
             this.setState({
                 currentPage: 0
             })
@@ -254,11 +253,16 @@ class HomePage extends Component {
     };
 
     handleisShowBody = (isShowSearch) => {
-        console.log('check show search', isShowSearch)
     }
 
 
     handleSearch = (arrAfter) => {
+        this.setState({
+            arrBook: arrAfter
+        })
+    }
+
+    handleSort = (arrAfter) => {
         this.setState({
             arrBook: arrAfter
         })
@@ -299,7 +303,11 @@ class HomePage extends Component {
                             </div>
                             <div className='body-right'>
                                 <div className='backgroup-body'>
-                                    <HomeBackgroup />
+                                    <HomeBackgroup
+                                        originalArrBook={this.state.originalArrBook}
+                                        arrBook={this.state.arrBook}
+                                        handleSort={this.handleSort}
+                                    />
                                 </div>
                                 <div className='body-product'>
                                     <ArrProduct
@@ -350,6 +358,7 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
     return {
+        bookInfo: state.book.bookInfo,
         copybook: state.book.copybook,
 
     };
@@ -357,6 +366,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        fetchallBookStart: (maSach) => dispatch(actions.fetchallBookStart(maSach)),
 
     };
 };

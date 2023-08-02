@@ -8,7 +8,9 @@ export const path = {
     CART: '/cart',
     CART_BILL: '/cart-bill',
     SHOW_BOOK: '/show-more-books',
-    HOME_SEARCH: '/home-search'
+    HOME_SEARCH: '/home-search',
+    INFOUSER: '/user/:id',
+    LISTBILL: '/list-bill'
 };
 
 export const languages = {

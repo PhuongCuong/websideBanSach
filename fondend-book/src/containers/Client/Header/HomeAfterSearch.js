@@ -93,7 +93,6 @@ class HomeAfterSearch extends Component {
     handlegetMount = (mount) => {
         let { originalArrBook } = this.state;
         let filteredArrBook = []
-        console.log('check mount', mount)
 
 
         if (mount === 'duoi-40000') {
@@ -132,7 +131,6 @@ class HomeAfterSearch extends Component {
             let frommount = +this.state.frommount;
             let aboutmount = +this.state.aboutmount;
             filteredArrBook = originalArrBook.filter(item => item.gia >= frommount && item.gia < aboutmount);
-            console.log('check fill', filteredArrBook)
             this.setState({
                 currentPage: 0
             })
@@ -277,7 +275,6 @@ class HomeAfterSearch extends Component {
         let offset = this.state.currentPage * itemsPerPage;
         let currentData = data.slice(offset, offset + itemsPerPage);
         let { isShowBody } = this.state;
-        console.log('check arr state', this.props)
         return (
             <div className='homepage-container'>
                 <div className='homepage-content'>

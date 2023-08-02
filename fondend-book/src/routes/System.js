@@ -12,6 +12,7 @@ import TheloaiManager from '../containers/System/Product/TheloaiManager';
 import Discount from '../containers/System/Product/Discount';
 import BookManageInfo from '../containers/System/Product/BookManageInfo';
 import BillManage from '../containers/System/Bill/BillManage';
+import BillDetailManage from '../containers/System/Bill/BillDetailManage';
 
 class System extends Component {
     render() {
@@ -27,6 +28,8 @@ class System extends Component {
                         <Route path="/system/theloai-manage" component={TheloaiManager} />
                         <Route path="/system/discount-manage" component={Discount} />
                         <Route path="/system/bill-manage" component={BillManage} />
+                        <Route path="/system/bill-detail-manage" component={BillDetailManage} />
+
 
                         {/* /system/detail-book-manage */}
                         <Route path="/system/detail-book-manage" component={BookManageInfo} />

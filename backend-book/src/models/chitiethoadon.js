@@ -10,12 +10,13 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            ChitietHoaDon.belongsTo(models.Book, { foreignKey: 'bookId', targetKey: 'keyMap', as: 'BookData' })
+
         }
     }
     ChitietHoaDon.init({
         hoaDonId: DataTypes.INTEGER,
-        bookId: DataTypes.INTEGER,
+        bookId: DataTypes.STRING,
         soLuong: DataTypes.INTEGER,
         thanhTien: DataTypes.STRING,
         image: DataTypes.TEXT,

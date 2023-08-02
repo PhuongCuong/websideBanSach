@@ -16,6 +16,7 @@ class HomeHeader extends Component {
             soluongproduct: '',
             searchText: '',
             isShowSearch: false,
+            isLoggedIns: false
         }
     }
 
@@ -32,6 +33,11 @@ class HomeHeader extends Component {
         }
         if (prevState.searchText !== this.state.searchText) {
             await this.handleShowSearch()
+        }
+        if (prevProps.isLoggedIn !== this.props.isLoggedIn) {
+            this.setState({
+                isLoggedIns: this.props.isLoggedIn
+            })
         }
 
     }
@@ -126,11 +132,42 @@ class HomeHeader extends Component {
         }
     }
 
+    handleClickInfoUser = () => {
+        let { userInfo } = this.props;
+        if (this.props.history) {
+            this.props.history.push(
+                {
+                    pathname: `/user/${userInfo && userInfo.data ? userInfo.data.id : 'id'}`,
+                    state: this.props.userInfo
+                }
+            )
+        }
+    }
 
+
+    handleClickMybill = () => {
+        if (this.props.history) {
+            this.props.history.push('/list-bill')
+        }
+    }
+
+    handleLogin = () => {
+        if (this.props.history) {
+            this.props.history.push('/login')
+        }
+    }
+
+    handletopageManager = () => {
+        if (this.props.history) {
+            this.props.history.push('/system')
+        }
+    }
 
 
     render() {
-        let { soluongproduct, isShowSearch } = this.state;
+        let { soluongproduct, isShowSearch, isLoggedIns } = this.state;
+        let { isLoggedIn, userInfo } = this.props;
+        console.log('check propsss', this.props)
         return (
             <div className='homeheader-container'>
                 <div className='homeheader-content'>
@@ -171,16 +208,66 @@ class HomeHeader extends Component {
 
                     </div>
                     <div className='homeheader-right'>
-                        <div className='homeheader-home'>
+                        <div className='homeheader-home'
+                            onClick={() => this.handleHome()}
+                        >
                             <span className='img-home'>
                             </span>
                             <span className='text-home'>Trang chủ</span>
                         </div>
-                        <div className='homeheader-login'>
-                            <span className='img-login'>
-                            </span>
-                            <span className='text-login'>Tài khoản</span>
+                        <div className='homeheader-parent-login'>
+                            {this.props.isLoggedIn === true
+                                ?
+                                <>
+                                    <div className='homeheader-login'>
+                                        <span className='img-login'>
+                                        </span>
+                                        <span className='text-login'>Tài khoản</span>
+                                    </div>
+                                    <div className='homeheader-chill'>
+                                        <div className='homeheader-login-choose'
+                                            onClick={() => this.handleClickInfoUser()}
+                                        >
+                                            <i className="far fa-user-circle"></i>Thông tin tài khoản
+                                        </div>
+                                        <div className='homeheader-login-choose'
+                                            onClick={() => this.handleClickMybill()}
+
+                                        >
+                                            <i className="far fa-file-alt"></i>Thông tin đơn hàng
+                                        </div>
+                                        {this.props.userInfo && this.props.userInfo.data &&
+                                            this.props.userInfo.data.roleId === 'R1' || this.props.userInfo.data.roleId === 'R3'
+                                            ?
+                                            <div className='homeheader-login-choose'
+                                                onClick={() => this.handletopageManager()}
+                                            >
+                                                <i className="fas fa-tasks"></i>Trang quản lý
+                                            </div>
+                                            :
+                                            <></>
+                                        }
+                                        <div className='homeheader-login-choose'
+                                            onClick={this.props.processLogout}
+                                        >
+                                            <i className="fas fa-sign-out-alt"></i>Đăng xuất
+                                        </div>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <div className='homeheader-login'
+                                        onClick={() => this.handleLogin()}
+                                    >
+                                        <span className='img-login'>
+                                        </span>
+                                        <span className='text-login'>Tài khoản</span>
+                                    </div>
+                                </>
+                            }
+
                         </div>
+
                         <div className='homeheader-cart'
                             onClick={() => this.handleCart()}
                         >
@@ -193,34 +280,6 @@ class HomeHeader extends Component {
                             }
                         </div>
                     </div>
-
-                    {/* <div className='homeheader-right-choice'>
-                        <div className='homeheader-home'
-                            onClick={() => this.handleHome()}
-                        >Home</div>
-                        <div className='homeheader-about'>About</div>
-                    </div>
-                    <div className='homeheader-right-cart'>
-                        <span className='homeheader-cart'
-                            onClick={() => this.handleCart()}
-                        >
-                            <i className="fas fa-cart-arrow-down">
-                                {soluongproduct
-                                    ?
-                                    <div className='soluong-incart'>
-                                        <span>{soluongproduct ? soluongproduct : ''}</span>
-                                    </div>
-                                    :
-                                    <></>
-                                }
-
-                            </i>
-
-                        </span>
-                        <span className='homeheader-login'>
-                            <i className="far fa-user"></i>
-                        </span>
-                    </div> */}
                 </div>
             </div >
         )
@@ -231,12 +290,15 @@ class HomeHeader extends Component {
 const mapStateToProps = state => {
     return {
         copybook: state.book.copybook,
-
+        isLoggedIn: state.user.isLoggedIn,
+        userInfo: state.user.userInfo,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        processLogout: () => dispatch(actions.processLogout()),
+
     };
 };
 

@@ -17,13 +17,16 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             bookId: {
-                type: Sequelize.INTEGER
+                type: Sequelize.STRING
             },
             soLuong: {
                 type: Sequelize.INTEGER
             },
             thanhTien: {
                 type: Sequelize.STRING
+            },
+            image: {
+                type: Sequelize.TEXT
             },
             createdAt: {
                 allowNull: false,

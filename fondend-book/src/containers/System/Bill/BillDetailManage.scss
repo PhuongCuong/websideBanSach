@@ -1,0 +1,342 @@
+.Bill-detail-manager-container {
+    .Bill-detail-manager-content {
+        .Bill-detail-manager-header {
+            z-index         : 99;
+            height          : 40px;
+            background-color: #0071ba;
+            color           : white;
+            display         : flex;
+            align-items     : center;
+
+            .cancel-bill-manager {
+                i {
+                    font-size: 20px;
+                    margin   : 0 5px;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                span {
+                    font-size: 15px;
+                }
+
+            }
+        }
+
+        .Bill-detail-manager-body {
+            display      : flex;
+            flex-wrap    : wrap;
+            align-content: flex-start;
+
+            .bill-detail-manager-info {
+                margin: 5px 5px;
+                width : 40%;
+
+                .bill-info-customer {
+                    margin: 5px 5px;
+
+                }
+
+                .bill-detail-info-product {
+                    margin    : 5px 5px;
+                    max-height: 500px;
+                    overflow  : hidden;
+                    overflow-y: auto;
+
+                    .table {
+
+                        border: 1px solid #ddd;
+
+                        thead {
+
+                            tr {
+                                text-align: center;
+                                height    : 40px;
+
+                                th {
+                                    padding-top     : 12px;
+                                    padding-bottom  : 12px;
+                                    text-align      : center;
+                                    background-color: gray;
+                                    color           : white;
+                                }
+
+
+
+                                th {
+                                    border: 1px solid #ddd;
+
+                                }
+                            }
+                        }
+
+                        tr {
+                            text-align: center;
+                            height    : 40px;
+
+
+
+                            .desgin-input-number {
+                                margin         : 0 15px;
+                                height         : 35px;
+                                display        : flex;
+                                justify-content: center;
+                                align-items    : center;
+                                width          : 81px;
+                                border         : 1px solid #ddd;
+                                border-radius  : 7px;
+
+                                .input-soluong {
+                                    height     : 26.54px;
+                                    width      : 22.58px;
+                                    border     : none;
+                                    outline    : none;
+                                    margin     : 0 0 !important;
+                                    color      : #0D0E0F;
+                                    font-weight: 700;
+                                    font-size  : 1.2em;
+                                    height     : 100%;
+                                    text-align : center;
+                                }
+
+                                input.input-soluong::-webkit-outer-spin-button,
+                                input.input-soluong::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                    margin            : 0;
+                                }
+
+                                input[type=number].input-soluong {
+                                    -moz-appearance: textfield;
+                                }
+
+                                .btn-minus {
+                                    width          : 26.54px;
+                                    height         : 18.56px;
+                                    display        : flex;
+                                    justify-content: center;
+                                    align-items    : center;
+
+                                    i {
+                                        font-size: 15px;
+                                        color    : #646464;
+                                    }
+
+                                    &:hover {
+                                        cursor: pointer;
+                                    }
+                                }
+
+                                .btn-adds {
+                                    width          : 26.54px;
+                                    height         : 18.56px;
+                                    display        : flex;
+                                    justify-content: center;
+                                    align-items    : center;
+
+                                    i {
+                                        font-size: 15px;
+                                        color    : #646464;
+                                    }
+
+                                    &:hover {
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+
+
+
+                            .img-SP {
+                                background-position: center;
+                                background-repeat  : no-repeat;
+                                background-size    : contain;
+                            }
+
+                            .option {
+                                .choose {
+                                    display: flex;
+
+                                    .delete {
+                                        margin: 0 5px;
+                                        color : rgb(93, 93, 7);
+
+                                        &:hover {
+                                            cursor: pointer;
+                                        }
+                                    }
+
+                                    .edit {
+                                        margin: 0 5px;
+                                        color : blue;
+
+                                        &:hover {
+                                            cursor: pointer;
+                                        }
+                                    }
+
+
+                                }
+
+
+
+
+                            }
+
+
+                        }
+
+                    }
+                }
+            }
+
+            .bill-detail-product {
+                margin       : 5px 0;
+                border       : 1px solid #ddd;
+                border-radius: 5px;
+                width        : 59%;
+
+                .bill-detail-search {
+                    border-bottom: 1px solid #ddd;
+                    margin       : 5px 5px;
+                    height       : 50px;
+                    display      : flex;
+                    align-items  : center;
+
+                    .text-search {
+                        .in-text-search {
+                            display    : flex;
+                            align-items: center;
+                        }
+
+                        i {
+                            font-size   : 24px;
+                            width       : 25px;
+                            height      : 25px;
+                            color       : gray;
+                            margin-right: 5px;
+                        }
+
+                        input {
+                            height : 30px;
+                            width  : 100%;
+                            border : none;
+                            outline: none;
+                        }
+
+                    }
+                }
+
+                .bill-detail-list-product {
+                    margin    : 5px 5px;
+                    max-height: 600px;
+                    overflow  : hidden;
+                    overflow-y: auto;
+
+                    .table {
+
+                        border: 1px solid #ddd;
+
+                        thead {
+
+                            tr {
+                                text-align: center;
+                                height    : 40px;
+
+                                th {
+                                    padding-top     : 12px;
+                                    padding-bottom  : 12px;
+                                    text-align      : center;
+                                    background-color: gray;
+                                    color           : white;
+                                }
+
+
+
+                                th {
+                                    border: 1px solid #ddd;
+
+                                }
+
+
+                            }
+                        }
+
+                        tr {
+                            text-align: center;
+                            height    : 40px;
+
+
+
+                            &:hover {
+                                cursor          : pointer;
+                                background-color: rgba(39, 39, 42, 0.12);
+                            }
+
+                            .img-SP {
+                                background-position: center;
+                                background-repeat  : no-repeat;
+                                background-size    : contain;
+                            }
+
+                            &.active {
+                                background-color: rgba(39, 39, 42, 0.12);
+                            }
+
+                        }
+
+                    }
+                }
+            }
+
+
+            .bill-detail-btn {
+                margin     : 5px 5px 20px 5px;
+                width      : 100%;
+                height     : 50px;
+                display    : flex;
+                align-items: center;
+                position   : relative;
+
+                .bill-detail-choose {
+                    float   : right;
+                    position: absolute;
+                    right   : 10px;
+
+                    .btn-add-product {
+                        height          : 30px;
+                        border          : none;
+                        outline         : none;
+                        border-radius   : 5px;
+                        background-color: orange;
+                        margin          : 0 5px;
+
+                        i {
+                            font-size: 15px;
+                            margin   : 5px 5px;
+                            color    : green;
+                        }
+                    }
+
+                    .btn-save-change {
+                        height          : 30px;
+                        border          : none;
+                        outline         : none;
+                        border-radius   : 5px;
+                        background-color: rgb(179, 179, 245);
+                        margin          : 0 5px;
+
+                        i {
+                            font-size: 15px;
+                            margin   : 5px 5px;
+                            color    : green;
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+}

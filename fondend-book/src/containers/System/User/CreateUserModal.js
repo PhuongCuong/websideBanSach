@@ -9,7 +9,8 @@ import Select from 'react-select'
 import { handleGetallCodeByType, handleNewUseradmin } from '../../../services/userService'
 import Lightbox from 'react-image-lightbox';
 import { toast } from 'react-toastify';
-
+import { uploadfile } from '../../../services/bookService'
+import LoadingOverlay from 'react-loading-overlay';
 
 
 class CreateUserModal extends Component {
@@ -18,7 +19,8 @@ class CreateUserModal extends Component {
         this.state = {
             listGender: [],
             listRole: [],
-            previewImg: [],
+            file: {},
+            preview: [],
             isOpen: false,
 
             selectedGender: '',
@@ -32,6 +34,7 @@ class CreateUserModal extends Component {
             gender: '',
             roleId: '',
             avatar: '',
+            isShowLoading: false
 
         }
     }
@@ -76,21 +79,16 @@ class CreateUserModal extends Component {
 
 
     handleOnChangefile = async (event) => {
-        let data = event.target.files;
-        let file = data[0];
-        if (file) {
-            let base64 = await CommonUtils.getBase64(file);
-            let ObjectURL = URL.createObjectURL(file);
-            this.setState({
-                previewImg: ObjectURL,
-                avatar: base64
-            })
-        }
-
+        let file = event.target.files[0];
+        let ObjectURL = URL.createObjectURL(file);
+        this.setState({
+            file: file,
+            preview: ObjectURL
+        })
     }
 
     handlePreviewImg = () => {
-        if (!this.state.previewImg) return;
+        if (!this.state.preview) return;
         this.setState({
             isOpen: true
         })
@@ -102,12 +100,11 @@ class CreateUserModal extends Component {
         this.setState({
             ...copystate
         })
-        console.log('check state', this.state)
     }
 
     handleCheckinput = () => {
         let isCheck = true;
-        let arr = ['firstName', 'lastName', 'email', 'password', 'address', 'phoneNumber', 'gender', 'roleId', 'avatar'];
+        let arr = ['firstName', 'lastName', 'email', 'password', 'address', 'phoneNumber', 'gender', 'roleId'];
         for (let i = 0; i < arr.length; i++) {
             if (!this.state[arr[i]]) {
                 isCheck = false;
@@ -121,17 +118,23 @@ class CreateUserModal extends Component {
     handleOnClickSave = async () => {
         let check = this.handleCheckinput();
         if (check === true) {
-            let data = await this.props.handleCreateNewUser({
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                password: this.state.password,
-                address: this.state.address,
-                phonenumber: this.state.phoneNumber,
-                gender: this.state.gender,
-                roleId: this.state.roleId,
-                image: this.state.avatar,
+            const formData = new FormData();
+            formData.append("firstName", this.state.firstName)
+            formData.append("lastName", this.state.lastName)
+            formData.append("email", this.state.email)
+            formData.append("password", this.state.password)
+            formData.append("address", this.state.address)
+            formData.append("phonenumber", this.state.phoneNumber)
+            formData.append("gender", this.state.gender)
+            formData.append("roleId", this.state.roleId)
+            formData.append("image", this.state.file)
+            this.setState({
+                isShowLoading: true
             })
+            let link = await uploadfile(formData)
+
+
+            let data = await this.props.handleCreateNewUser(formData)
 
             this.setState({
                 selectedGender: '',
@@ -144,7 +147,6 @@ class CreateUserModal extends Component {
                 phoneNumber: '',
                 gender: '',
                 roleId: '',
-                avatar: '',
                 previewImg: [],
 
             })
@@ -268,7 +270,7 @@ class CreateUserModal extends Component {
                                 <label className='label-upload' htmlFor='previewImg'>Tải ảnh <i className="fas fa-upload"></i></label>
                                 <div className='preview-image'
                                     // onClick={() => this.handlePreviewImg()}
-                                    style={{ backgroundImage: `url(${this.state.previewImg})` }}
+                                    style={{ backgroundImage: `url(${this.state.preview})` }}
                                 ></div>
                             </div>
                         </div>

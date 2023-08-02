@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             Book.belongsTo(models.discount, { foreignKey: 'keyMap', targetKey: 'maSach', as: 'discountData' })
             Book.belongsTo(models.BookInfor, { foreignKey: 'keyMap', targetKey: 'bookId', as: 'BookInfoData' })
             Book.belongsTo(models.allCode, { foreignKey: 'sanPham', targetKey: 'keyMap', as: 'sanPhamData' })
-
+            Book.hasOne(models.ChitietHoaDon, { foreignKey: 'bookId', targetKey: 'keyMap', as: 'ChiTietHoaDonData' })
         }
     }
     Book.init({

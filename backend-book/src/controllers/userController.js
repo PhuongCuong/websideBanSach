@@ -94,32 +94,19 @@ let handleCreatenNewUseradmin = async (req, res) => {
         let phonenumber = req.body.phonenumber;
         let gender = req.body.gender;
         let roleId = req.body.roleId;
-        let image = req.body.image;
-
-
-        if (!email || !password || !firstName
-            || !lastName || !address || !phonenumber
-            || !gender || !roleId
+        let file = req.file;
+        if (!email || !firstName || !address || !phonenumber || !roleId
         ) {
             return res.status(200).json({
                 errCode: 1,
                 errMessanger: 'Missing input paramenter!'
             })
         }
-        let data = await userService.handleCreatenNewUseradmin({
-            email: email,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            address: address,
-            phonenumber: phonenumber,
-            gender: gender,
-            roleId: roleId,
-            image: image
-        });
-        res.status(200).json({
+        let data = await userService.handleCreatenNewUseradmin(req.body, file);
+        return res.status(200).json({
             errCode: data.errCode,
             errMessanger: data.errMessager,
+            id: data.id,
             data: data ? data.data : {}
         })
     } catch (e) {
@@ -150,16 +137,15 @@ let handleDeleteUser = async (req, res) => {
 let handleUpdateUser = async (req, res) => {
     try {
         let userId = req.body;
-        if (!userId.firstName || !userId.lastName || !userId.email
-            || !userId.password || !userId.address || !userId.phoneNumber
-            || !userId.gender || !userId.roleId || !userId.avatar || !userId.id
+        let file = req.file;
+        if (!userId.email || !userId.address || !userId.phoneNumber || !userId.id
         ) {
             res.status(200).json({
                 errCode: 1,
                 errMessager: 'Missing input paramenter'
             })
         } else {
-            let data = await userService.handleUpdateUser(userId);
+            let data = await userService.handleUpdateUser(userId, file);
             res.status(200).json({
                 errCode: data.errCode,
                 errMessager: data.errMessager
@@ -170,6 +156,34 @@ let handleUpdateUser = async (req, res) => {
     }
 }
 
+let handlegetAlluserbyEmail = async (req, res) => {
+    try {
+        let userId = req.query.email;
+        let data = await userService.handlegetAlluserbyEmail(userId);
+        res.status(200).json({
+            errCode: data.errCode,
+            errMessanger: data.errMessager,
+            data: data ? data.data : {}
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
+let updatePassword = async (req, res) => {
+    try {
+        let userId = req.body
+        let data = await userService.updatePassword(userId);
+        res.status(200).json({
+            errCode: data.errCode,
+            errMessanger: data.errMessager,
+            data: data ? data.data : {}
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 
 module.exports = {
@@ -179,5 +193,7 @@ module.exports = {
     handlegetAllallCodebytype: handlegetAllallCodebytype,
     handleCreatenNewUseradmin: handleCreatenNewUseradmin,
     handleDeleteUser: handleDeleteUser,
-    handleUpdateUser: handleUpdateUser
+    handleUpdateUser: handleUpdateUser,
+    handlegetAlluserbyEmail: handlegetAlluserbyEmail,
+    updatePassword: updatePassword
 }

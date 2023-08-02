@@ -259,9 +259,10 @@ class Cart extends Component {
                                     <div className='product-incart' key={index}
                                     >
                                         <input type='checkbox'
-                                            onChange={(event) => this.handleCheckboxChange(event, item)}
                                             value={item}
                                             checked={checkboxes.includes(item)}
+                                            onChange={(event) => this.handleCheckboxChange(event, item)}
+
                                         />
                                         <div className='img-product' style={{ backgroundImage: `url(${item.image})` }}
                                             onClick={() => this.handleInfoBook(item)}

@@ -73,7 +73,6 @@ class Discount extends Component {
     }
 
     handleOnChangleDatePicker = (date, id) => {
-        console.log('check date', date)
         let copystate = { ...this.state };
         copystate[id] = date;
         this.setState({
@@ -186,7 +185,6 @@ class Discount extends Component {
         let { arrBook, isShowupdate } = this.state;
         let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
         let tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
-        console.log('check state', this.state)
         return (
             <div className='discont-container'>
                 <div className='discont-content'>
