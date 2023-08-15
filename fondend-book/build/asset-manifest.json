@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.46240e80.chunk.css",
+    "main.js": "/static/js/main.8a16139a.chunk.js",
+    "main.js.map": "/static/js/main.8a16139a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ec662c43.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ec662c43.js.map",
+    "static/css/2.ab042383.chunk.css": "/static/css/2.ab042383.chunk.css",
+    "static/js/2.b3d1e7b5.chunk.js": "/static/js/2.b3d1e7b5.chunk.js",
+    "static/js/2.b3d1e7b5.chunk.js.map": "/static/js/2.b3d1e7b5.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.ab042383.chunk.css.map": "/static/css/2.ab042383.chunk.css.map",
+    "static/css/main.46240e80.chunk.css.map": "/static/css/main.46240e80.chunk.css.map",
+    "static/js/2.b3d1e7b5.chunk.js.LICENSE.txt": "/static/js/2.b3d1e7b5.chunk.js.LICENSE.txt",
+    "static/media/HomeBackgroup.scss": "/static/media/image_217480.361cbd84.jpg",
+    "static/media/Login.scss": "/static/media/Google__G__Logo.55ea24c4.svg",
+    "static/media/TextSearch.scss": "/static/media/4549526613692.22223e45.jpg",
+    "static/media/ArrProduct.scss": "/static/media/8934974158448.396a79dc.jpg",
+    "static/media/BillManage.scss": "/static/media/8935001853633.945f0883.jpg",
+    "static/media/TableDiscountManager.scss": "/static/media/bia1_muonkiepnhansinh3-01.37506e4f.jpg",
+    "static/media/styles.scss": "/static/media/fa-solid-900.d279d01b.svg",
+    "static/media/ListBill.scss": "/static/media/empty-order.0928cc55.png",
+    "static/media/Cart.scss": "/static/media/ico_emptycart.cc5ad127.svg",
+    "static/media/CartBill.scss": "/static/media/ico_warning_white.577a267a.svg",
+    "static/media/BookDetailCart.scss": "/static/media/label-flashsale.fd97c767.svg",
+    "static/media/styles.css": "/static/media/revicons.e8746a62.woff",
+    "static/media/slick-theme.css": "/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ec662c43.js",
+    "static/css/2.ab042383.chunk.css",
+    "static/js/2.b3d1e7b5.chunk.js",
+    "static/css/main.46240e80.chunk.css",
+    "static/js/main.8a16139a.chunk.js"
+  ]
+}

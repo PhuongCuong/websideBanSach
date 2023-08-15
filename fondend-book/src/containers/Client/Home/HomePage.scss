@@ -105,3 +105,27 @@
         background-color: rgba(0, 0, 0, 0.5);
     }
 }
+
+@media only screen and (min-width:46.25em) and (max-width:63.9375em) {
+    .homepage-container {
+        .homepage-content {
+            .homepage-header {
+                position: sticky;
+                top     : 0;
+                z-index : 200;
+            }
+        }
+    }
+}
+
+// @media only screen and (max-width:46.1875em) {
+//     .homepage-container {
+//         .homepage-content {
+//             .homepage-header {
+//                 position: sticky;
+//                 top     : 0;
+//                 z-index : 200;
+//             }
+//         }
+//     }
+// }

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import TextSearch from './TextSearch';
 import { handlegetAllbookbycart } from '../../../services/bookService'
 import * as actions from "../../../store/actions"
-
+import { MediaQuery } from 'react-responsive';
 
 class HomeHeader extends Component {
 

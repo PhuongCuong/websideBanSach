@@ -27,6 +27,11 @@
                 position: static !important;
             }
 
+            .slick-prev:before,
+            .slick-next:before {
+                display: none;
+            }
+
 
             .slick-prev {
                 z-index            : 1;
